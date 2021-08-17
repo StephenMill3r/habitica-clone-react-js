@@ -326,7 +326,9 @@ body {
     cursor: pointer;
   }
   &__sucsess-task {
-    background: #24cc8f !important;
+    .item-main-content__left {
+      background: #24cc8f !important;
+    }
   }
   &__bad-task {
     .item-main-content__left {
