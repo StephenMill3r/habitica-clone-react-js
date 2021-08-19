@@ -1,8 +1,11 @@
-import { useTypedSelector } from '../../redux/typeHooks/useTypedSelector';
+import { IMemberInfo } from './MemberInfo';
 
-const MemberHealth: React.FC = () => {
-  const { healthPoint } = useTypedSelector((state) => state.user);
+interface IMemberHealth {
+  healthPoint: number;
+  memberInfo: IMemberInfo;
+}
 
+const MemberHealth: React.FC<IMemberHealth> = ({ healthPoint, memberInfo }) => {
   return (
     <div className='member__health member__data'>
       <div className='member__icon'>
@@ -30,9 +33,15 @@ const MemberHealth: React.FC = () => {
         </svg>
       </div>
       <div className='progress-bar'>
-        <span className='progress-bar-fill' style={{ width: '35%' }}></span>
+        <span
+          className='progress-bar-fill'
+          style={{
+            width: (healthPoint > 0 ? healthPoint / memberInfo.health : 0) * 100 + '%',
+          }}></span>
       </div>
-      <div className='member__count'>{healthPoint}/50</div>
+      <div className='member__count'>
+        {healthPoint > 0 ? healthPoint : 0}/{memberInfo.health}
+      </div>
     </div>
   );
 };

@@ -5,31 +5,41 @@ import { useActions } from '../../redux/typeHooks/useActions';
 interface IMainContentTask {
   titleText: string;
   supText: string;
-  count: number;
   diff: number;
 }
 
-const MainContentTask: React.FC<IMainContentTask> = ({ titleText, supText, count, diff }) => {
-  const { setUserLevel, setMinusUserLevel } = useActions();
+const MainContentTask: React.FC<IMainContentTask> = ({ titleText, supText, diff }) => {
+  const { setUserLevel, setMinusUserLevel, setUserHealth, setMinusUserHealth, setUserMoney } =
+    useActions();
   const [checkBox, setCheckBox] = useState<boolean>(false);
   const [pointsReward, setPointsReward] = useState([
     {
       diff: 0,
       point: 11,
+      health: 7,
     },
     {
       diff: 1,
       point: 14,
+      health: 11,
     },
   ]);
-  const onClickLevelUpdate = (level: number) => (event: React.MouseEvent<HTMLElement>) => {
-    setCheckBox(!checkBox);
-    if (checkBox) {
-      setMinusUserLevel(level);
-    } else {
-      setUserLevel(level);
-    }
-  };
+  const [count, setCount] = useState<number>(0);
+
+  const onClickLevelUpdate =
+    (level: number, health: number) => (event: React.MouseEvent<HTMLElement>) => {
+      setCheckBox(!checkBox);
+      if (checkBox) {
+        setMinusUserLevel(level);
+        setMinusUserHealth(health);
+        setCount(count - 1);
+      } else {
+        setUserLevel(level);
+        setUserHealth(health);
+        setUserMoney(Math.floor(Math.random() * 2));
+        setCount(count + 1);
+      }
+    };
   return (
     <div className='item-main-content__wrapper'>
       <div className='item-main-content__task'>
@@ -38,7 +48,7 @@ const MainContentTask: React.FC<IMainContentTask> = ({ titleText, supText, count
             'item-main-content__left-active': checkBox,
           })}>
           <div
-            onClick={onClickLevelUpdate(pointsReward[diff].point)}
+            onClick={onClickLevelUpdate(pointsReward[diff].point, pointsReward[diff].health)}
             className='item-main-content__checkbox'>
             <span>
               <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 13 10'>

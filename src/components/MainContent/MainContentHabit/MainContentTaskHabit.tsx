@@ -1,25 +1,40 @@
+import { useState } from 'react';
+import { useActions } from '../../../redux/typeHooks/useActions';
 import classNames from 'classnames';
 
 interface IMainContentTaskHabit {
   text: string;
-  count: number;
   isBadTask: boolean;
-  isSucsessTask?: boolean;
 }
 
-const MainContentTaskHabit: React.FC<IMainContentTaskHabit> = ({
-  text,
-  count,
-  isBadTask,
-  isSucsessTask,
-}) => {
+const MainContentTaskHabit: React.FC<IMainContentTaskHabit> = ({ text, isBadTask }) => {
+  const { setMinusUserHealth, setUserLevel } = useActions();
+
+  const [isSucsessTask, setIsSucsessTask] = useState<boolean>(false);
+  const [count, setCount] = useState<number>(0);
+
+  const onClickBadHabitTask = (health: number) => (event: React.MouseEvent<HTMLElement>) => {
+    if (isBadTask) {
+      setMinusUserHealth(health);
+      setCount(count - 1);
+    }
+  };
+  const onClickSucsessTask = () => (event: React.MouseEvent<HTMLElement>) => {
+    if (!isBadTask) {
+      setIsSucsessTask(true);
+      setUserLevel(10);
+      setCount(count + 1);
+    }
+  };
   return (
     <div
       className={classNames('item-main-content__task', {
         'item-main-content__bad-task': isBadTask,
         'item-main-content__sucsess-task': isSucsessTask,
       })}>
-      <div className='item-main-content__left item-main-content__func'>
+      <div
+        onClick={onClickSucsessTask()}
+        className='item-main-content__left item-main-content__func'>
         <div className='item-main-content__plus'>+</div>
       </div>
       <div className='item-main-content__middle'>
@@ -34,7 +49,7 @@ const MainContentTaskHabit: React.FC<IMainContentTaskHabit> = ({
         </div>
       </div>
       <div className='item-main-content__right item-main-content__func'>
-        <div className='item-main-content__minus'>
+        <div onClick={onClickBadHabitTask(7)} className='item-main-content__minus'>
           <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 2'>
             <path fill-rule='evenodd' d='M0 0h10v2H0z'></path>
           </svg>

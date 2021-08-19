@@ -1,6 +1,28 @@
+import { useState } from 'react';
 import { MainContentTask } from '../../';
+import { useActions } from '../../../redux/typeHooks/useActions';
+import { useTypedSelector } from '../../../redux/typeHooks/useTypedSelector';
 
 const MainContentDaily: React.FC = () => {
+  const { setDailyItems } = useActions();
+  const { items } = useTypedSelector((state) => state.dailyTask);
+
+  const [text, setText] = useState<string>('');
+
+  const onSendDaily = (titleText: string) => {
+    setDailyItems({ titleText });
+  };
+  const handleAddDaily = (e: React.FormEvent) => {
+    e.preventDefault();
+    onSendDaily(text);
+    setText('');
+  };
+  const handleKeyDown = (e: any) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handleAddDaily(e);
+    }
+  };
   return (
     <div className='main-content__column'>
       <div className='main-content__info'>
@@ -16,28 +38,24 @@ const MainContentDaily: React.FC = () => {
       <div className='main-content__item item-main-content'>
         <div className='item-main-content__top'>
           <div className='item-main-content__add'>
-            <textarea placeholder='Добавить ежедневное дело'></textarea>
+            <form onSubmit={handleAddDaily}>
+              <textarea
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+                onKeyDown={handleKeyDown}
+                placeholder='Добавить ежедневное дело'></textarea>
+            </form>
           </div>
         </div>
         <div className='item-main-content__wrapper'>
-          <MainContentTask
-            titleText='Поработать над творческим проектом'
-            supText='Нажмите, чтобы указать название вашего текущего проекта и задать расписание!'
-            count={1}
-            diff={0}
-          />
-          <MainContentTask
-            titleText='Поработать над творческим проектом'
-            supText='Нажмите, чтобы указать название вашего текущего проекта и задать расписание!'
-            count={1}
-            diff={1}
-          />
-          <MainContentTask
-            titleText='Поработать над творческим проектом'
-            supText='Нажмите, чтобы указать название вашего текущего проекта и задать расписание!'
-            count={0}
-            diff={1}
-          />
+          {items.map((item: any, index: number) => (
+            <MainContentTask
+              key={`${index}`}
+              titleText={item.titleText}
+              supText={item.supText}
+              diff={0}
+            />
+          ))}
           <div className='item-main-content__note note-item-main-content'>
             <div className='note-item-main-content__icon'>
               <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 20'>

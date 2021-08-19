@@ -1,4 +1,8 @@
+import { useTypedSelector } from '../redux/typeHooks/useTypedSelector';
+
 const Header: React.FC = () => {
+  const { money } = useTypedSelector((state) => state.user);
+
   return (
     <header className='header'>
       <div className='container'>
@@ -79,7 +83,7 @@ const Header: React.FC = () => {
                   </g>
                 </svg>
               </div>
-              <span>0</span>
+              <span>{money}</span>
             </div>
             <div className='header__message'>
               <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>

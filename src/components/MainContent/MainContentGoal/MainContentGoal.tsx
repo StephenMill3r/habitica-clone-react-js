@@ -1,6 +1,28 @@
+import { useState } from 'react';
 import { MainContentTask } from '../../';
+import { useActions } from '../../../redux/typeHooks/useActions';
+import { useTypedSelector } from '../../../redux/typeHooks/useTypedSelector';
 
 const MainContentGoal: React.FC = () => {
+  const { setGoalItems } = useActions();
+  const { items } = useTypedSelector((state) => state.goal);
+
+  const [text, setText] = useState<string>('');
+
+  const onSendGoal = (titleText: string) => {
+    setGoalItems({ titleText });
+  };
+  const handleAddGoal = (e: React.FormEvent) => {
+    e.preventDefault();
+    onSendGoal(text);
+    setText('');
+  };
+  const handleKeyDown = (e: any) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handleAddGoal(e);
+    }
+  };
   return (
     <div className='main-content__column'>
       <div className='main-content__info'>
@@ -16,28 +38,24 @@ const MainContentGoal: React.FC = () => {
       <div className='main-content__item item-main-content'>
         <div className='item-main-content__top'>
           <div className='item-main-content__add'>
-            <textarea placeholder='Добавить задачу'></textarea>
+            <form onSubmit={handleAddGoal}>
+              <textarea
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+                onKeyDown={handleKeyDown}
+                placeholder='Добавить задачу'></textarea>
+            </form>
           </div>
         </div>
         <div className='item-main-content__wrapper'>
-          <MainContentTask
-            titleText='Установить расписание тренировок'
-            supText='Нажмите, чтобы добавить список!'
-            count={1}
-            diff={0}
-          />
-          <MainContentTask
-            titleText='Поработать над творческим проектом'
-            supText='Нажмите, чтобы указать название вашего текущего проекта и задать расписание!'
-            count={1}
-            diff={0}
-          />
-          <MainContentTask
-            titleText='Поработать над творческим проектом'
-            supText='Нажмите, чтобы указать название вашего текущего проекта и задать расписание!'
-            count={0}
-            diff={0}
-          />
+          {items.map((item: any, index: number) => (
+            <MainContentTask
+              key={`${index}`}
+              titleText={item.titleText}
+              supText={item.supText}
+              diff={0}
+            />
+          ))}
           <div className='item-main-content__note note-item-main-content'>
             <div className='note-item-main-content__icon'>
               <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'>
