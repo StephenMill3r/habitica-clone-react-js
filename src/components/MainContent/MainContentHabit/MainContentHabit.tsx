@@ -48,8 +48,12 @@ const MainContentHabit: React.FC = () => {
           </div>
         </div>
         <div className='item-main-content__wrapper'>
-          {items.map((item: string, index: number) => (
-            <MainContentTaskHabit key={`${index}__${item[0]}`} text={item} isBadTask={false} />
+          {items.map((item: any, index: number) => (
+            <MainContentTaskHabit
+              key={`${index}__${item[0]}`}
+              text={item.titleText}
+              isBadTask={item.isBadTask}
+            />
           ))}
         </div>
       </div>

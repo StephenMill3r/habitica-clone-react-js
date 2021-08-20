@@ -1,5 +1,5 @@
 export interface habitState {
-  items: string[];
+  items: any[];
 }
 
 export enum habitActionsType {

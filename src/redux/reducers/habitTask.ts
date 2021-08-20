@@ -2,8 +2,14 @@ import { habitActions, habitActionsType, habitState } from '../typesRedux/habitT
 
 const initialState: habitState = {
   items: [
-    'Изучить действия мастера ремесла + к Использовать новый подход в творчестве',
-    '10 мин. кардио + 10 минут кардио',
+    {
+      titleText: 'Плохая привычка',
+      isBadTask: true,
+    },
+    {
+      titleText: 'Проверить почту',
+      isBadTask: false,
+    },
   ],
 };
 

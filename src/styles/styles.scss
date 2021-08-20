@@ -425,6 +425,7 @@ body {
     }
   }
   &__coin {
+    cursor: pointer;
     background: rgba(255, 190, 93, 0.15);
     padding-top: 1rem;
     width: 40px;
@@ -505,6 +506,14 @@ body {
     color: #794b00;
     font-weight: 700;
     font-size: 13px;
+  }
+}
+
+.toastIcon {
+  padding: 0 5px;
+  svg {
+    width: 15px;
+    height: 15px;
   }
 }
 

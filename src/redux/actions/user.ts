@@ -29,3 +29,7 @@ export const setResetUserHealth = (): userActions => {
 export const setUserMoney = (payload: number): userActions => {
   return { type: userActionsType.SET_USER_MONEY, payload };
 };
+
+export const setMinusUserMoney = (payload: number): userActions => {
+  return { type: userActionsType.SET_MINUS_USER_MONEY, payload };
+};

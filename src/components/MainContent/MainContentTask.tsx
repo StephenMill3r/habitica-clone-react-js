@@ -1,6 +1,8 @@
-import classNames from 'classnames';
 import React, { useState } from 'react';
+import { StarIcon, HealthIcon } from '..';
 import { useActions } from '../../redux/typeHooks/useActions';
+import { toast } from 'react-toastify';
+import classNames from 'classnames';
 
 interface IMainContentTask {
   titleText: string;
@@ -26,6 +28,26 @@ const MainContentTask: React.FC<IMainContentTask> = ({ titleText, supText, diff 
   ]);
   const [count, setCount] = useState<number>(0);
 
+  const notifyLevel = (level: number) =>
+    toast.success(
+      <div>
+        Вы получили немного опыта
+        <span className='toastIcon'>
+          <StarIcon />
+        </span>
+        {level}
+      </div>,
+    );
+  const notifyHealth = (health: number) =>
+    toast.success(
+      <div>
+        Вы получили немного жизни
+        <span className='toastIcon'>
+          <HealthIcon />
+        </span>
+        {health}
+      </div>,
+    );
   const onClickLevelUpdate =
     (level: number, health: number) => (event: React.MouseEvent<HTMLElement>) => {
       setCheckBox(!checkBox);
@@ -36,8 +58,10 @@ const MainContentTask: React.FC<IMainContentTask> = ({ titleText, supText, diff 
       } else {
         setUserLevel(level);
         setUserHealth(health);
-        setUserMoney(Math.floor(Math.random() * 2));
+        setUserMoney(Math.floor(Math.random() * 10));
         setCount(count + 1);
+        notifyLevel(level);
+        notifyHealth(health);
       }
     };
   return (

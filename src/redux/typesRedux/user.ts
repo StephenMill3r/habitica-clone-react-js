@@ -12,6 +12,7 @@ export enum userActionsType {
   SET_MINUS_USER_HEALTH = 'SET_MINUS_USER_HEALTH',
   SET_RESET_USER_HEALTH = 'SET_RESET_USER_HEALTH',
   SET_USER_MONEY = 'SET_USER_MONEY',
+  SET_MINUS_USER_MONEY = 'SET_MINUS_USER_MONEY',
 }
 
 interface setUserLevelType {
@@ -47,6 +48,10 @@ interface setMoneyUserType {
   payload: number;
 }
 
+interface setMinusMoneyUserType {
+  type: userActionsType.SET_MINUS_USER_MONEY;
+  payload: number;
+}
 export type userActions =
   | setUserHealthType
   | setUserLevelType
@@ -54,4 +59,5 @@ export type userActions =
   | setResetUserLevelType
   | setMinusUserHealthType
   | setResetUserHealthType
-  | setMoneyUserType;
+  | setMoneyUserType
+  | setMinusMoneyUserType;

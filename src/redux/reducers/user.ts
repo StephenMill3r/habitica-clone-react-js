@@ -22,6 +22,8 @@ export const user = (state = initialState, action: userActions): userState => {
       return { ...state, healthPoint: 50 };
     case userActionsType.SET_USER_MONEY:
       return { ...state, money: state.money + action.payload };
+    case userActionsType.SET_MINUS_USER_MONEY:
+      return { ...state, money: state.money - action.payload };
     default:
       return state;
   }

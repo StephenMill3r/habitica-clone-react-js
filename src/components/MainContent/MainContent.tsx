@@ -1,4 +1,6 @@
 import { MainContentHabit, MainContentDaily, MainContentGoal, MainContentReward } from '..';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const MainContent: React.FC = () => {
   return (
@@ -26,6 +28,7 @@ const MainContent: React.FC = () => {
           <MainContentDaily />
           <MainContentGoal />
           <MainContentReward />
+          <ToastContainer />
         </div>
       </div>
     </section>

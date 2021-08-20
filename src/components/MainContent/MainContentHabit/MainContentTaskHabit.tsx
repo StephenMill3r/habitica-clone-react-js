@@ -1,5 +1,8 @@
 import { useState } from 'react';
+import { StarIcon, HealthIcon } from '../..';
+
 import { useActions } from '../../../redux/typeHooks/useActions';
+import { toast } from 'react-toastify';
 import classNames from 'classnames';
 
 interface IMainContentTaskHabit {
@@ -13,9 +16,30 @@ const MainContentTaskHabit: React.FC<IMainContentTaskHabit> = ({ text, isBadTask
   const [isSucsessTask, setIsSucsessTask] = useState<boolean>(false);
   const [count, setCount] = useState<number>(0);
 
+  const notifyLevel = (level: number) =>
+    toast.success(
+      <div>
+        Вы получили немного опыта
+        <span className='toastIcon'>
+          <StarIcon />
+        </span>
+        {level}
+      </div>,
+    );
+  const notifyHealthDamage = (health: number) =>
+    toast.error(
+      <div>
+        Вы потеряли немного жизни
+        <span className='toastIcon'>
+          <HealthIcon />
+        </span>
+        {health}
+      </div>,
+    );
   const onClickBadHabitTask = (health: number) => (event: React.MouseEvent<HTMLElement>) => {
     if (isBadTask) {
       setMinusUserHealth(health);
+      notifyHealthDamage(health);
       setCount(count - 1);
     }
   };
@@ -23,6 +47,7 @@ const MainContentTaskHabit: React.FC<IMainContentTaskHabit> = ({ text, isBadTask
     if (!isBadTask) {
       setIsSucsessTask(true);
       setUserLevel(10);
+      notifyLevel(10);
       setCount(count + 1);
     }
   };
