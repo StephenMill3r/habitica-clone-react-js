@@ -8,10 +8,11 @@ import classNames from 'classnames';
 interface IMainContentTaskHabit {
   text: string;
   isBadTask: boolean;
+  id: number;
 }
 
-const MainContentTaskHabit: React.FC<IMainContentTaskHabit> = ({ text, isBadTask }) => {
-  const { setMinusUserHealth, setUserLevel } = useActions();
+const MainContentTaskHabit: React.FC<IMainContentTaskHabit> = ({ text, isBadTask, id }) => {
+  const { setMinusUserHealth, setUserLevel, setHabitSucsessTask } = useActions();
 
   const [isSucsessTask, setIsSucsessTask] = useState<boolean>(false);
   const [count, setCount] = useState<number>(0);
@@ -43,9 +44,9 @@ const MainContentTaskHabit: React.FC<IMainContentTaskHabit> = ({ text, isBadTask
       setCount(count - 1);
     }
   };
-  const onClickSucsessTask = () => (event: React.MouseEvent<HTMLElement>) => {
+  const onClickSucsessTask = (id: number) => (event: React.MouseEvent<HTMLElement>) => {
     if (!isBadTask) {
-      setIsSucsessTask(true);
+      setHabitSucsessTask(id);
       setUserLevel(10);
       notifyLevel(10);
       setCount(count + 1);
@@ -58,7 +59,7 @@ const MainContentTaskHabit: React.FC<IMainContentTaskHabit> = ({ text, isBadTask
         'item-main-content__sucsess-task': isSucsessTask,
       })}>
       <div
-        onClick={onClickSucsessTask()}
+        onClick={onClickSucsessTask(id)}
         className='item-main-content__left item-main-content__func'>
         <div className='item-main-content__plus'>+</div>
       </div>

@@ -1,16 +1,33 @@
+import classNames from 'classnames';
 import { useState } from 'react';
 import { MainContentTaskHabit } from '../../';
 import { useActions } from '../../../redux/typeHooks/useActions';
 import { useTypedSelector } from '../../../redux/typeHooks/useTypedSelector';
+
+const tabItems = [
+  {
+    category: 'all',
+    title: 'Все',
+  },
+  {
+    category: 'weak',
+    title: 'Слабые',
+  },
+  {
+    category: 'strong',
+    title: 'Сильные',
+  },
+];
 
 const MainContentHabit: React.FC = () => {
   const { setHabitItems } = useActions();
   const { items } = useTypedSelector((state) => state.habitTask);
 
   const [text, setText] = useState<string>('');
+  const [active, setActive] = useState('all');
 
   const onSendHabit = (text: string) => {
-    setHabitItems(text);
+    setHabitItems({ category: 'weak', titleText: text });
   };
   const handleAddHabit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,9 +46,15 @@ const MainContentHabit: React.FC = () => {
         <div className='main-content__name'>Привычки</div>
         <div className='main-content__tabs'>
           <ul className='main-content__list'>
-            <li className='main-content__list-item list-item-active'>Все</li>
-            <li className='main-content__list-item'>Слабые</li>
-            <li className='main-content__list-item'>Сильные</li>
+            {tabItems.map((tabItem) => (
+              <li
+                onClick={() => setActive(tabItem.category)}
+                className={classNames('main-content__list-item', {
+                  'list-item-active': active === tabItem.category,
+                })}>
+                {tabItem.title}
+              </li>
+            ))}
           </ul>
         </div>
       </div>
@@ -48,13 +71,17 @@ const MainContentHabit: React.FC = () => {
           </div>
         </div>
         <div className='item-main-content__wrapper'>
-          {items.map((item: any, index: number) => (
-            <MainContentTaskHabit
-              key={`${index}__${item[0]}`}
-              text={item.titleText}
-              isBadTask={item.isBadTask}
-            />
-          ))}
+          {items.map(
+            (item: any, index: number) =>
+              active === item.category && (
+                <MainContentTaskHabit
+                  key={`${index}__${item[0]}`}
+                  text={item.titleText}
+                  isBadTask={item.isBadTask}
+                  id={item.id}
+                />
+              ),
+          )}
         </div>
       </div>
     </div>
