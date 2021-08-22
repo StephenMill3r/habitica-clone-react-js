@@ -308,7 +308,7 @@ body {
     }
   }
   &__task {
-    @include flexbox();
+    display: none;
     width: 100%;
     margin-bottom: 2px;
     -webkit-box-shadow: 0 2px 2px 0 rgb(26 24 29 / 16%), 0 1px 4px 0 rgb(26 24 29 / 12%);
@@ -516,7 +516,9 @@ body {
     height: 15px;
   }
 }
-
+.item-main-content__show-task {
+  @include flexbox();
+}
 // .black-questions__suptitle.active:before {
 // 	-webkit-transform: rotate(40deg);
 // 	-ms-transform: rotate(40deg);

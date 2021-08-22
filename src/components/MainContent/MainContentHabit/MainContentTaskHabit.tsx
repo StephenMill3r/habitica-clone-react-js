@@ -9,13 +9,26 @@ interface IMainContentTaskHabit {
   text: string;
   isBadTask: boolean;
   id: number;
+  isSucsessTask: boolean;
+  isShow: boolean;
+  count: number;
 }
 
-const MainContentTaskHabit: React.FC<IMainContentTaskHabit> = ({ text, isBadTask, id }) => {
-  const { setMinusUserHealth, setUserLevel, setHabitSucsessTask } = useActions();
-
-  const [isSucsessTask, setIsSucsessTask] = useState<boolean>(false);
-  const [count, setCount] = useState<number>(0);
+const MainContentTaskHabit: React.FC<IMainContentTaskHabit> = ({
+  text,
+  isBadTask,
+  id,
+  isSucsessTask,
+  isShow,
+  count,
+}) => {
+  const {
+    setMinusUserHealth,
+    setUserLevel,
+    setHabitSucsessTask,
+    setPlusHabitCount,
+    setMinusHabitCount,
+  } = useActions();
 
   const notifyLevel = (level: number) =>
     toast.success(
@@ -37,19 +50,20 @@ const MainContentTaskHabit: React.FC<IMainContentTaskHabit> = ({ text, isBadTask
         {health}
       </div>,
     );
-  const onClickBadHabitTask = (health: number) => (event: React.MouseEvent<HTMLElement>) => {
-    if (isBadTask) {
-      setMinusUserHealth(health);
-      notifyHealthDamage(health);
-      setCount(count - 1);
-    }
-  };
+  const onClickBadHabitTask =
+    (health: number, id: number) => (event: React.MouseEvent<HTMLElement>) => {
+      if (isBadTask) {
+        setMinusUserHealth(health);
+        notifyHealthDamage(health);
+        setMinusHabitCount(id);
+      }
+    };
   const onClickSucsessTask = (id: number) => (event: React.MouseEvent<HTMLElement>) => {
     if (!isBadTask) {
       setHabitSucsessTask(id);
       setUserLevel(10);
       notifyLevel(10);
-      setCount(count + 1);
+      setPlusHabitCount(id);
     }
   };
   return (
@@ -57,6 +71,7 @@ const MainContentTaskHabit: React.FC<IMainContentTaskHabit> = ({ text, isBadTask
       className={classNames('item-main-content__task', {
         'item-main-content__bad-task': isBadTask,
         'item-main-content__sucsess-task': isSucsessTask,
+        'item-main-content__show-task': isShow,
       })}>
       <div
         onClick={onClickSucsessTask(id)}
@@ -75,7 +90,7 @@ const MainContentTaskHabit: React.FC<IMainContentTaskHabit> = ({ text, isBadTask
         </div>
       </div>
       <div className='item-main-content__right item-main-content__func'>
-        <div onClick={onClickBadHabitTask(7)} className='item-main-content__minus'>
+        <div onClick={onClickBadHabitTask(7, id)} className='item-main-content__minus'>
           <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 2'>
             <path fill-rule='evenodd' d='M0 0h10v2H0z'></path>
           </svg>

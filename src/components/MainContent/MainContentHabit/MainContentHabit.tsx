@@ -1,8 +1,14 @@
-import classNames from 'classnames';
 import { useState } from 'react';
-import { MainContentTaskHabit } from '../../';
+import classNames from 'classnames';
+
+import { MainContentHabitItem } from '../../';
 import { useActions } from '../../../redux/typeHooks/useActions';
 import { useTypedSelector } from '../../../redux/typeHooks/useTypedSelector';
+
+type tabItemsType = {
+  category: string;
+  title: string;
+};
 
 const tabItems = [
   {
@@ -23,11 +29,11 @@ const MainContentHabit: React.FC = () => {
   const { setHabitItems } = useActions();
   const { items } = useTypedSelector((state) => state.habitTask);
 
-  const [text, setText] = useState<string>('');
   const [active, setActive] = useState('all');
+  const [text, setText] = useState<string>('');
 
   const onSendHabit = (text: string) => {
-    setHabitItems({ category: 'weak', titleText: text });
+    setHabitItems({ id: items.length - 1 + 1, category: 'weak', titleText: text, count: 0 });
   };
   const handleAddHabit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -40,13 +46,14 @@ const MainContentHabit: React.FC = () => {
       handleAddHabit(e);
     }
   };
+
   return (
     <div className='main-content__column'>
       <div className='main-content__info'>
         <div className='main-content__name'>Привычки</div>
         <div className='main-content__tabs'>
           <ul className='main-content__list'>
-            {tabItems.map((tabItem) => (
+            {tabItems.map((tabItem: tabItemsType) => (
               <li
                 onClick={() => setActive(tabItem.category)}
                 className={classNames('main-content__list-item', {
@@ -59,30 +66,20 @@ const MainContentHabit: React.FC = () => {
         </div>
       </div>
       <div className='main-content__item item-main-content'>
-        <div className='item-main-content__top'>
-          <div className='item-main-content__add'>
-            <form onSubmit={handleAddHabit}>
-              <textarea
-                value={text}
-                onChange={(e) => setText(e.target.value)}
-                onKeyDown={handleKeyDown}
-                placeholder='Добавить привычку'></textarea>
-            </form>
+        <div className='item-main-content__wrapper'>
+          <div className='item-main-content__top'>
+            <div className='item-main-content__add'>
+              <form onSubmit={handleAddHabit}>
+                <textarea
+                  value={text}
+                  onChange={(e) => setText(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  placeholder='Добавить привычку'></textarea>
+              </form>
+            </div>
           </div>
         </div>
-        <div className='item-main-content__wrapper'>
-          {items.map(
-            (item: any, index: number) =>
-              active === item.category && (
-                <MainContentTaskHabit
-                  key={`${index}__${item[0]}`}
-                  text={item.titleText}
-                  isBadTask={item.isBadTask}
-                  id={item.id}
-                />
-              ),
-          )}
-        </div>
+        <MainContentHabitItem active={active} items={items} />
       </div>
     </div>
   );

@@ -18,6 +18,7 @@ export { default as MainContentRewardTask } from './MainContent/MainContentRewar
 
 export { default as MainContentHabit } from './MainContent/MainContentHabit/MainContentHabit';
 export { default as MainContentTaskHabit } from './MainContent/MainContentHabit/MainContentTaskHabit';
+export { default as MainContentHabitItem } from './MainContent/MainContentHabit/MainContentHabitItem';
 
 export { default as SwordIcon } from './icons/MemberIcons/SwordIcon';
 export { default as StarIcon } from './icons/StarIcon';
