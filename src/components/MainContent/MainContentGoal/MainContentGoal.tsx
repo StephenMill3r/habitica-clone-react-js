@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { MainContentTask } from '../../';
+
+import { MainContentGoalTask, Tabs } from '../../';
 import { useActions } from '../../../redux/typeHooks/useActions';
 import { useTypedSelector } from '../../../redux/typeHooks/useTypedSelector';
 
@@ -8,9 +9,17 @@ const MainContentGoal: React.FC = () => {
   const { items } = useTypedSelector((state) => state.goal);
 
   const [text, setText] = useState<string>('');
+  const [active, setActive] = useState('active');
 
   const onSendGoal = (titleText: string) => {
-    setGoalItems({ titleText });
+    setGoalItems({
+      id: items.length - 1 + 1,
+      titleText,
+      category: 'active',
+      exp: 10,
+      health: 7,
+      isCompletedTask: false,
+    });
   };
   const handleAddGoal = (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,9 +38,16 @@ const MainContentGoal: React.FC = () => {
         <div className='main-content__name'>Задачи</div>
         <div className='main-content__tabs'>
           <ul className='main-content__list'>
-            <li className='main-content__list-item list-item-active'>Активные</li>
-            <li className='main-content__list-item'>С датой</li>
-            <li className='main-content__list-item'>Сделанные</li>
+            <Tabs
+              active={active}
+              setActive={setActive}
+              categoryFirst='active'
+              categorySecond='date'
+              categoryThird='completed'
+              titleFirst='Активные'
+              titleSecond='С датой'
+              titleThird='Сделанные'
+            />
           </ul>
         </div>
       </div>
@@ -49,11 +65,15 @@ const MainContentGoal: React.FC = () => {
         </div>
         <div className='item-main-content__wrapper'>
           {items.map((item: any, index: number) => (
-            <MainContentTask
+            <MainContentGoalTask
               key={`${index}`}
+              id={item.id}
+              isCompletedTask={item.isCompletedTask}
+              isShow={true ? item.category === active : false}
               titleText={item.titleText}
               supText={item.supText}
-              diff={0}
+              exp={item.exp}
+              health={item.health}
             />
           ))}
           <div className='item-main-content__note note-item-main-content'>

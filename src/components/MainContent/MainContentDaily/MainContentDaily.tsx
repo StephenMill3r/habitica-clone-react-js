@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { MainContentTask } from '../../';
+
+import { MainContentTask, Tabs } from '../../';
 import { useActions } from '../../../redux/typeHooks/useActions';
 import { useTypedSelector } from '../../../redux/typeHooks/useTypedSelector';
 
@@ -8,9 +9,18 @@ const MainContentDaily: React.FC = () => {
   const { items } = useTypedSelector((state) => state.dailyTask);
 
   const [text, setText] = useState<string>('');
+  const [active, setActive] = useState('all');
 
   const onSendDaily = (titleText: string) => {
-    setDailyItems({ titleText });
+    setDailyItems({
+      id: items.length - 1 + 1,
+      titleText,
+      count: 0,
+      category: 'active',
+      isCompletedTask: false,
+      exp: 10,
+      health: 7,
+    });
   };
   const handleAddDaily = (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,9 +39,16 @@ const MainContentDaily: React.FC = () => {
         <div className='main-content__name'>Ежедневные дела</div>
         <div className='main-content__tabs'>
           <ul className='main-content__list'>
-            <li className='main-content__list-item list-item-active'>Все</li>
-            <li className='main-content__list-item'>Текущие</li>
-            <li className='main-content__list-item'>Прочие</li>
+            <Tabs
+              active={active}
+              setActive={setActive}
+              categoryFirst='all'
+              categorySecond='active'
+              categoryThird='other'
+              titleFirst='Все'
+              titleSecond='Текущие'
+              titleThird='Прочие'
+            />
           </ul>
         </div>
       </div>
@@ -51,9 +68,14 @@ const MainContentDaily: React.FC = () => {
           {items.map((item: any, index: number) => (
             <MainContentTask
               key={`${index}`}
+              id={item.id}
+              isCompletedTask={item.isCompletedTask}
+              isShow={true ? item.category === active || active === 'all' : false}
+              count={item.count}
               titleText={item.titleText}
               supText={item.supText}
-              diff={0}
+              exp={item.exp}
+              health={item.health}
             />
           ))}
           <div className='item-main-content__note note-item-main-content'>

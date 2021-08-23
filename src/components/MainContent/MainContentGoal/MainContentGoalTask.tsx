@@ -1,49 +1,34 @@
 import React from 'react';
 import classNames from 'classnames';
-import { StarIcon, HealthIcon, notifyError, notifySuccess } from '..';
-import { useActions } from '../../redux/typeHooks/useActions';
 
-interface IMainContentTask {
+import { StarIcon, HealthIcon, notifySuccess } from '../..';
+import { useActions } from '../../../redux/typeHooks/useActions';
+
+interface IMainContentTaskGoal {
   titleText: string;
   supText: string;
   id: number;
   isCompletedTask: boolean;
   isShow: boolean;
-  count: number;
   exp: number;
   health: number;
 }
 
-const MainContentTask: React.FC<IMainContentTask> = ({
+const MainContentTaskGoal: React.FC<IMainContentTaskGoal> = ({
   titleText,
   supText,
   id,
   isCompletedTask,
   isShow,
-  count,
   health,
   exp,
 }) => {
-  const {
-    setUserLevel,
-    setMinusUserLevel,
-    setUserHealth,
-    setMinusUserHealth,
-    setUserMoney,
-    setDailySuccessTask,
-    setDailyDefaultTask,
-  } = useActions();
+  const { setUserLevel, setUserHealth, setUserMoney, setGoalSuccessTask } = useActions();
 
   const onClickLevelUpdate =
     (level: number, health: number) => (event: React.MouseEvent<HTMLElement>) => {
-      setDailySuccessTask(id);
-      if (isCompletedTask) {
-        setMinusUserLevel(level);
-        setMinusUserHealth(health);
-        setDailyDefaultTask(id);
-        notifyError('жизни', health, <HealthIcon />);
-        notifyError('опыта', level, <StarIcon />);
-      } else {
+      if (!isCompletedTask) {
+        setGoalSuccessTask(id);
         setUserLevel(level);
         setUserHealth(health);
         setUserMoney(Math.floor(Math.random() * 10));
@@ -74,20 +59,10 @@ const MainContentTask: React.FC<IMainContentTask> = ({
         <div className='item-main-content__middle'>
           <p className='item-main-content__text'>{titleText}</p>
           <p className='item-main-content__suptext'>{supText}</p>
-          <div className='item-main-content__counter'>
-            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'>
-              <path
-                fill-rule='evenodd'
-                d='M11.376 3.15L6.777.086A.5.5 0 0 0 6 .5v6.132a.5.5 0 0 0 .777.416l4.599-3.066a.5.5 0 0 0 0-.832M.777.085L6 3.567.777 7.049A.5.5 0 0 1 0 6.633V.5A.5.5 0 0 1 .777.085'></path>
-            </svg>
-            <span className='item-main-content__count'>
-              {count >= 0 ? `+${count}` : `-${count}`}
-            </span>
-          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default MainContentTask;
+export default MainContentTaskGoal;

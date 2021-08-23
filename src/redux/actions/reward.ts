@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 
-import { rewardActions, rewardActionsType } from '../typesRedux/reward';
+import { rewardActions, rewardActionsType, rewardItemsType } from '../typesRedux/reward';
 
-export const setRewardItems = (payload: any): rewardActions => {
+export const setRewardItems = (payload: rewardItemsType): rewardActions => {
   return { type: rewardActionsType.SET_REWARD_ITEMS, payload };
 };

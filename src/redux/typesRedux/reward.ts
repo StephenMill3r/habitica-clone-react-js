@@ -1,7 +1,9 @@
-type rewardItemsType = {
+export type rewardItemsType = {
+  id?: number;
   titleText: string;
   supText?: string;
   cost: number;
+  category: string;
 };
 
 export interface rewardState {

@@ -13,7 +13,7 @@ export interface habitState {
 
 export enum habitActionsType {
   SET_HABIT_ITEMS = 'SET_HABIT_ITEMS',
-  SET_HABIT_SUCSESS_TASK = 'SET_HABIT_SUCSESS_TASK',
+  SET_HABIT_SUCCESS_TASK = 'SET_HABIT_SUCCESS_TASK',
   SET_PLUS_HABIT_COUNT = 'SET_PLUS_HABIT_COUNT',
   SET_MINUS_HABIT_COUNT = 'SET_MINUS_HABIT_COUNT',
 }
@@ -23,8 +23,8 @@ interface setHabitItemsType {
   payload: habitItemsType;
 }
 
-interface setHabitSucsessTaskType {
-  type: habitActionsType.SET_HABIT_SUCSESS_TASK;
+interface setHabitSuccessTaskType {
+  type: habitActionsType.SET_HABIT_SUCCESS_TASK;
   payload: number;
 }
 
@@ -40,6 +40,6 @@ interface setMinusHabitCountType {
 
 export type habitActions =
   | setHabitItemsType
-  | setHabitSucsessTaskType
+  | setHabitSuccessTaskType
   | setPlusHabitCountType
   | setMinusHabitCountType;

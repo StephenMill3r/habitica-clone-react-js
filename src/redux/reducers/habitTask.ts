@@ -25,7 +25,7 @@ export const habitTask = (state = initialState, action: habitActions): habitStat
   switch (action.type) {
     case habitActionsType.SET_HABIT_ITEMS:
       return { ...state, items: [...state.items, action.payload] };
-    case habitActionsType.SET_HABIT_SUCSESS_TASK:
+    case habitActionsType.SET_HABIT_SUCCESS_TASK:
       return {
         ...state,
         items: state.items.map((item: any) =>

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CoinIcon, MainContentRewardTask } from '../..';
+import { CoinIcon, MainContentRewardTask, Tabs } from '../..';
 import { useActions } from '../../../redux/typeHooks/useActions';
 import { useTypedSelector } from '../../../redux/typeHooks/useTypedSelector';
 
@@ -8,9 +8,10 @@ const MainContentReward: React.FC = () => {
   const { items } = useTypedSelector((state) => state.reward);
 
   const [text, setText] = useState<string>('');
+  const [active, setActive] = useState('all');
 
   const onSendReward = (titleText: string) => {
-    setRewardItems({ titleText });
+    setRewardItems({ titleText, category: 'season', cost: 10 });
   };
   const handleAddReward = (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,9 +30,16 @@ const MainContentReward: React.FC = () => {
         <div className='main-content__name'>Награды</div>
         <div className='main-content__tabs'>
           <ul className='main-content__list'>
-            <li className='main-content__list-item list-item-active'>Все</li>
-            <li className='main-content__list-item'>Сезонные</li>
-            <li className='main-content__list-item'>Отложенные</li>
+            <Tabs
+              active={active}
+              setActive={setActive}
+              categoryFirst='all'
+              categorySecond='season'
+              categoryThird='later'
+              titleFirst='Все'
+              titleSecond='Сезонные'
+              titleThird='Отложенные'
+            />
           </ul>
         </div>
       </div>
@@ -53,8 +61,8 @@ const MainContentReward: React.FC = () => {
               key={`${index}`}
               titleText={item.titleText}
               supText={item.supText}
-              diff={0}
               cost={item.cost ? item.cost : 10}
+              isShow={true ? item.category === active || active === 'all' : false}
             />
           ))}
           <div className='item-main-content__shop shop-main-content'>

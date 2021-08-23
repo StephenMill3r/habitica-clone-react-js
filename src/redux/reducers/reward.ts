@@ -3,9 +3,11 @@ import { rewardActions, rewardActionsType, rewardState } from '../typesRedux/rew
 const initialState: rewardState = {
   items: [
     {
+      id: 0,
       titleText: 'Награди себя',
       supText: 'Смотрите телевизор,играйте в игры, кушайте вкусняшки,вам решать!',
       cost: 10,
+      category: 'season',
     },
   ],
 };

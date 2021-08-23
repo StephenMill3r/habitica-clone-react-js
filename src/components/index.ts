@@ -12,6 +12,7 @@ export { default as MainContentTask } from './MainContent/MainContentTask';
 export { default as MainContentDaily } from './MainContent/MainContentDaily/MainContentDaily';
 
 export { default as MainContentGoal } from './MainContent/MainContentGoal/MainContentGoal';
+export { default as MainContentGoalTask } from './MainContent/MainContentGoal/MainContentGoalTask';
 
 export { default as MainContentReward } from './MainContent/MainContentReward/MainContentReward';
 export { default as MainContentRewardTask } from './MainContent/MainContentReward/MainContentRewardTask';
@@ -19,6 +20,10 @@ export { default as MainContentRewardTask } from './MainContent/MainContentRewar
 export { default as MainContentHabit } from './MainContent/MainContentHabit/MainContentHabit';
 export { default as MainContentTaskHabit } from './MainContent/MainContentHabit/MainContentTaskHabit';
 export { default as MainContentHabitItem } from './MainContent/MainContentHabit/MainContentHabitItem';
+
+export { default as notifyError } from './helpers/notifyError';
+export { default as notifySuccess } from './helpers/notifySuccess';
+export { default as Tabs } from './helpers/Tabs';
 
 export { default as SwordIcon } from './icons/MemberIcons/SwordIcon';
 export { default as StarIcon } from './icons/StarIcon';

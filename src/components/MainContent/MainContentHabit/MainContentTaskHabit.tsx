@@ -1,9 +1,7 @@
-import { useState } from 'react';
-import { StarIcon, HealthIcon } from '../..';
-
-import { useActions } from '../../../redux/typeHooks/useActions';
-import { toast } from 'react-toastify';
 import classNames from 'classnames';
+
+import { StarIcon, HealthIcon, notifyError, notifySuccess } from '../..';
+import { useActions } from '../../../redux/typeHooks/useActions';
 
 interface IMainContentTaskHabit {
   text: string;
@@ -25,45 +23,25 @@ const MainContentTaskHabit: React.FC<IMainContentTaskHabit> = ({
   const {
     setMinusUserHealth,
     setUserLevel,
-    setHabitSucsessTask,
+    setHabitSuccessTask,
     setPlusHabitCount,
     setMinusHabitCount,
   } = useActions();
 
-  const notifyLevel = (level: number) =>
-    toast.success(
-      <div>
-        Вы получили немного опыта
-        <span className='toastIcon'>
-          <StarIcon />
-        </span>
-        {level}
-      </div>,
-    );
-  const notifyHealthDamage = (health: number) =>
-    toast.error(
-      <div>
-        Вы потеряли немного жизни
-        <span className='toastIcon'>
-          <HealthIcon />
-        </span>
-        {health}
-      </div>,
-    );
   const onClickBadHabitTask =
     (health: number, id: number) => (event: React.MouseEvent<HTMLElement>) => {
       if (isBadTask) {
         setMinusUserHealth(health);
-        notifyHealthDamage(health);
         setMinusHabitCount(id);
+        notifyError('жизни', health, <HealthIcon />);
       }
     };
   const onClickSucsessTask = (id: number) => (event: React.MouseEvent<HTMLElement>) => {
     if (!isBadTask) {
-      setHabitSucsessTask(id);
+      setHabitSuccessTask(id);
       setUserLevel(10);
-      notifyLevel(10);
       setPlusHabitCount(id);
+      notifySuccess('опыта', 10, <StarIcon />);
     }
   };
   return (

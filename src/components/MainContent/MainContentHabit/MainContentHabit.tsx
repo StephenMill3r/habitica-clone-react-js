@@ -1,29 +1,9 @@
 import { useState } from 'react';
 import classNames from 'classnames';
 
-import { MainContentHabitItem } from '../../';
+import { MainContentHabitItem, Tabs } from '../../';
 import { useActions } from '../../../redux/typeHooks/useActions';
 import { useTypedSelector } from '../../../redux/typeHooks/useTypedSelector';
-
-type tabItemsType = {
-  category: string;
-  title: string;
-};
-
-const tabItems = [
-  {
-    category: 'all',
-    title: 'Все',
-  },
-  {
-    category: 'weak',
-    title: 'Слабые',
-  },
-  {
-    category: 'strong',
-    title: 'Сильные',
-  },
-];
 
 const MainContentHabit: React.FC = () => {
   const { setHabitItems } = useActions();
@@ -53,7 +33,17 @@ const MainContentHabit: React.FC = () => {
         <div className='main-content__name'>Привычки</div>
         <div className='main-content__tabs'>
           <ul className='main-content__list'>
-            {tabItems.map((tabItem: tabItemsType) => (
+            <Tabs
+              active={active}
+              setActive={setActive}
+              categoryFirst='all'
+              categorySecond='weak'
+              categoryThird='strong'
+              titleFirst='Все'
+              titleSecond='Слабые'
+              titleThird='Сильные'
+            />
+            {/* {tabItems.map((tabItem: tabItemsType) => (
               <li
                 onClick={() => setActive(tabItem.category)}
                 className={classNames('main-content__list-item', {
@@ -61,7 +51,7 @@ const MainContentHabit: React.FC = () => {
                 })}>
                 {tabItem.title}
               </li>
-            ))}
+            ))} */}
           </ul>
         </div>
       </div>
