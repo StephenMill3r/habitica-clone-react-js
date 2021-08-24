@@ -16,6 +16,7 @@ export { default as MainContentGoalTask } from './MainContent/MainContentGoal/Ma
 
 export { default as MainContentReward } from './MainContent/MainContentReward/MainContentReward';
 export { default as MainContentRewardTask } from './MainContent/MainContentReward/MainContentRewardTask';
+export { default as MainContentRewardItem } from './MainContent/MainContentReward/MainContentRewardItem';
 
 export { default as MainContentHabit } from './MainContent/MainContentHabit/MainContentHabit';
 export { default as MainContentTaskHabit } from './MainContent/MainContentHabit/MainContentTaskHabit';

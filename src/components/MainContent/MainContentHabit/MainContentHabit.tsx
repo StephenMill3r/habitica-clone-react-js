@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import classNames from 'classnames';
 
 import { MainContentHabitItem, Tabs } from '../../';
 import { useActions } from '../../../redux/typeHooks/useActions';
@@ -43,15 +42,6 @@ const MainContentHabit: React.FC = () => {
               titleSecond='Слабые'
               titleThird='Сильные'
             />
-            {/* {tabItems.map((tabItem: tabItemsType) => (
-              <li
-                onClick={() => setActive(tabItem.category)}
-                className={classNames('main-content__list-item', {
-                  'list-item-active': active === tabItem.category,
-                })}>
-                {tabItem.title}
-              </li>
-            ))} */}
           </ul>
         </div>
       </div>

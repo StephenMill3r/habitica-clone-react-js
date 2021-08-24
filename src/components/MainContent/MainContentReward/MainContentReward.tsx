@@ -1,7 +1,22 @@
 import { useState } from 'react';
-import { CoinIcon, MainContentRewardTask, Tabs } from '../..';
+import { MainContentRewardTask, Tabs, MainContentRewardItem } from '../..';
 import { useActions } from '../../../redux/typeHooks/useActions';
 import { useTypedSelector } from '../../../redux/typeHooks/useTypedSelector';
+
+const shopItems = [
+  {
+    name: 'Health flask',
+    price: 25,
+  },
+  {
+    name: 'Health flask',
+    price: 25,
+  },
+  {
+    name: 'Health flask',
+    price: 25,
+  },
+];
 
 const MainContentReward: React.FC = () => {
   const { setRewardItems } = useActions();
@@ -67,60 +82,9 @@ const MainContentReward: React.FC = () => {
           ))}
           <div className='item-main-content__shop shop-main-content'>
             <div className='shop-main-content__row'>
-              <div className='shop-main-content__column'>
-                <div className='shop-main-content__item'>
-                  <div className='shop-main-content__icon'></div>
-                  <div className='shop-main-content__price'>
-                    <CoinIcon />
-                    25
-                  </div>
-                </div>
-              </div>
-              <div className='shop-main-content__column'>
-                <div className='shop-main-content__item'>
-                  <div className='shop-main-content__icon'></div>
-                  <div className='shop-main-content__price'>
-                    <CoinIcon />
-                    25
-                  </div>
-                </div>
-              </div>
-              <div className='shop-main-content__column'>
-                <div className='shop-main-content__item'>
-                  <div className='shop-main-content__icon'></div>
-                  <div className='shop-main-content__price'>
-                    <CoinIcon />
-                    25
-                  </div>
-                </div>
-              </div>
-              <div className='shop-main-content__column'>
-                <div className='shop-main-content__item'>
-                  <div className='shop-main-content__icon'></div>
-                  <div className='shop-main-content__price'>
-                    <CoinIcon />
-                    25
-                  </div>
-                </div>
-              </div>
-              <div className='shop-main-content__column'>
-                <div className='shop-main-content__item'>
-                  <div className='shop-main-content__icon'></div>
-                  <div className='shop-main-content__price'>
-                    <CoinIcon />
-                    25
-                  </div>
-                </div>
-              </div>
-              <div className='shop-main-content__column'>
-                <div className='shop-main-content__item'>
-                  <div className='shop-main-content__icon'></div>
-                  <div className='shop-main-content__price'>
-                    <CoinIcon />
-                    25
-                  </div>
-                </div>
-              </div>
+              {shopItems.map((shopItem, index) => (
+                <MainContentRewardItem key={`${shopItem.price}__${index}`} {...shopItem} />
+              ))}
             </div>
           </div>
         </div>
