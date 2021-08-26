@@ -25,6 +25,7 @@ export { default as MainContentHabitItem } from './MainContent/MainContentHabit/
 export { default as notifyError } from './helpers/notifyError';
 export { default as notifySuccess } from './helpers/notifySuccess';
 export { default as Tabs } from './helpers/Tabs';
+export { default as Modal } from './helpers/Modal';
 
 export { default as SwordIcon } from './icons/MemberIcons/SwordIcon';
 export { default as StarIcon } from './icons/StarIcon';
