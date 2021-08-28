@@ -17,6 +17,8 @@ const MainContentHabitItem: React.FC<IMainContentHabitItem> = ({ active, items }
           isSucsessTask={item.isSucsessTask}
           isShow={true ? item.category === active || active === 'all' : false}
           count={item.count}
+          supText={item.supText}
+          taskDiff={item.diff}
         />
       ))}
     </>

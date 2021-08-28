@@ -11,17 +11,10 @@ interface IMainContentTaskHabit {
   isSucsessTask: boolean;
   isShow: boolean;
   count: number;
+  supText: string;
+  taskDiff: number;
 }
 const diff = ['Пустяк', 'Легко', 'Нормально', 'Сложно'];
-const tags = [
-  'Работа',
-  'Спортивные упражнения',
-  'Здоровье и образ жизни',
-  'Учеба',
-  'Работа в команде',
-  'Домашние дела',
-  'Творчество',
-];
 
 const MainContentTaskHabit: React.FC<IMainContentTaskHabit> = ({
   text,
@@ -30,6 +23,8 @@ const MainContentTaskHabit: React.FC<IMainContentTaskHabit> = ({
   isSucsessTask,
   isShow,
   count,
+  supText,
+  taskDiff,
 }) => {
   const {
     setMinusUserHealth,
@@ -37,27 +32,46 @@ const MainContentTaskHabit: React.FC<IMainContentTaskHabit> = ({
     setHabitSuccessTask,
     setPlusHabitCount,
     setMinusHabitCount,
+    setHabitChangeTask,
+    setDeleteHabitTask,
   } = useActions();
 
-  const [modalActive, setModalActive] = useState(false);
+  const [modalActive, setModalActive] = useState<boolean>(false);
   const [selectedDiff, setSelectedDiff] = useState(diff[0]);
-  const [selectedTag, setSelectedTag] = useState(tags[0]);
+  const [modalText, setModalText] = useState<string>(text);
+  const [modalSupText, setModalSupText] = useState<string>(supText);
+  const [isBadTaskModal, setIsBadTaskModal] = useState<boolean>(isBadTask);
 
   const onClickBadHabitTask =
     (health: number, id: number) => (event: React.MouseEvent<HTMLElement>) => {
       if (isBadTask) {
-        setMinusUserHealth(health);
+        setMinusUserHealth(health * taskDiff);
         setMinusHabitCount(id);
-        notifyError('жизни', health, <HealthIcon />);
+        notifyError('жизни', health * taskDiff, <HealthIcon />);
       }
     };
-  const onClickSucsessTask = (id: number) => (event: React.MouseEvent<HTMLElement>) => {
-    if (!isBadTask) {
-      setHabitSuccessTask(id);
-      setUserLevel(10);
-      setPlusHabitCount(id);
-      notifySuccess('опыта', 10, <StarIcon />);
-    }
+
+  const onClickSucsessTask =
+    (id: number, level: number) => (event: React.MouseEvent<HTMLElement>) => {
+      if (!isBadTask) {
+        setHabitSuccessTask(id);
+        setUserLevel(level * taskDiff);
+        setPlusHabitCount(id);
+        notifySuccess('опыта', level * taskDiff, <StarIcon />);
+      }
+    };
+  const onSendChangeHabit = (titleText: string, supText: string, diff: number) => {
+    setHabitChangeTask(id, isBadTaskModal, titleText, supText, diff);
+    setModalActive(false);
+  };
+
+  const handleChangeIsBadTask = (value: boolean) => () => {
+    setIsBadTaskModal(value);
+  };
+
+  const onClickDeleteTask = () => {
+    setDeleteHabitTask(id);
+    setModalActive(false);
   };
   return (
     <>
@@ -68,7 +82,7 @@ const MainContentTaskHabit: React.FC<IMainContentTaskHabit> = ({
           'item-main-content__show-task': isShow,
         })}>
         <div
-          onClick={onClickSucsessTask(id)}
+          onClick={onClickSucsessTask(id, 10)}
           className='item-main-content__left item-main-content__func'>
           <div className='item-main-content__plus'>+</div>
         </div>
@@ -84,6 +98,7 @@ const MainContentTaskHabit: React.FC<IMainContentTaskHabit> = ({
                 d='M2 4a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 6a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 6a2 2 0 1 1 0-4 2 2 0 0 1 0 4z'></path>
             </svg>
           </div>
+          <p className='item-main-content__suptext'>{supText}</p>
           <div className='item-main-content__counter'>
             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'>
               <path
@@ -108,28 +123,43 @@ const MainContentTaskHabit: React.FC<IMainContentTaskHabit> = ({
           <div className='modal__top'>
             <div className='modal__title'>Изменить привычку</div>
             <div className='modal__buttons'>
-              <button className='modal__cancel'>Отмена</button>
-              <button className='modal__save btn'>Сохранить</button>
+              <button onClick={() => setModalActive(false)} className='modal__cancel'>
+                Отмена
+              </button>
+              <button
+                onClick={() =>
+                  onSendChangeHabit(modalText, modalSupText, diff.indexOf(selectedDiff))
+                }
+                className='modal__save btn'>
+                Сохранить
+              </button>
             </div>
           </div>
           <div className='modal__text'>
             <label>Заголовок*</label>
-            <input placeholder='Добавить название' value='Плохая привычка' type='text' />
+            <input
+              placeholder='Добавить название'
+              value={modalText}
+              onChange={(e) => setModalText(e.target.value)}
+              type='text'
+            />
           </div>
           <div className='modal__notice'>
             <label>Заметки</label>
-            <textarea value='Заметка'></textarea>
+            <textarea
+              value={modalSupText}
+              onChange={(e) => setModalSupText(e.target.value)}></textarea>
           </div>
         </div>
         <div className='modal__body'>
           <div className='modal__icons'>
-            <div className='modal__icon-item'>
+            <div onClick={handleChangeIsBadTask(false)} className='modal__icon-item'>
               <div className='modal__icon modal__icon-active'>
                 <div className='item-main-content__plus'>+</div>
               </div>
               <div className='modal__description'>Полезная</div>
             </div>
-            <div className='modal__icon-item'>
+            <div onClick={handleChangeIsBadTask(true)} className='modal__icon-item'>
               <div className='modal__icon'>
                 <div className='item-main-content__minus'>
                   <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 2'>
@@ -151,18 +181,9 @@ const MainContentTaskHabit: React.FC<IMainContentTaskHabit> = ({
               </option>
             ))}
           </select>
-          <div className='modal__title-select'>Теги</div>
-          <select
-            className='modal__select'
-            value={selectedTag}
-            onChange={(e) => setSelectedTag(e.target.value)}>
-            {tags.map((item) => (
-              <option key={item} value={item}>
-                {item}
-              </option>
-            ))}
-          </select>
-          <div className='modal__footer'>Удалить привычку</div>
+          <div onClick={onClickDeleteTask} className='modal__footer'>
+            Удалить привычку
+          </div>
         </div>
       </Modal>
     </>
