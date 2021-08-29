@@ -65,7 +65,7 @@ const MainContentTask: React.FC<IMainContentTask> = ({
             <span>
               <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 13 10'>
                 <path
-                  fill-rule='evenodd'
+                  fillRule='evenodd'
                   d='M4.662 9.832c-.312 0-.61-.123-.831-.344L0 5.657l1.662-1.662 2.934 2.934L10.534 0l1.785 1.529-6.764 7.893a1.182 1.182 0 0 1-.848.409l-.045.001'></path>
               </svg>
             </span>
@@ -76,7 +76,7 @@ const MainContentTask: React.FC<IMainContentTask> = ({
             <p className='item-main-content__text'>{titleText}</p>
             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 16'>
               <path
-                fill-rule='evenodd'
+                fillRule='evenodd'
                 d='M2 4a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 6a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 6a2 2 0 1 1 0-4 2 2 0 0 1 0 4z'></path>
             </svg>
           </div>
@@ -84,7 +84,7 @@ const MainContentTask: React.FC<IMainContentTask> = ({
           <div className='item-main-content__counter'>
             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'>
               <path
-                fill-rule='evenodd'
+                fillRule='evenodd'
                 d='M11.376 3.15L6.777.086A.5.5 0 0 0 6 .5v6.132a.5.5 0 0 0 .777.416l4.599-3.066a.5.5 0 0 0 0-.832M.777.085L6 3.567.777 7.049A.5.5 0 0 1 0 6.633V.5A.5.5 0 0 1 .777.085'></path>
             </svg>
             <span className='item-main-content__count'>

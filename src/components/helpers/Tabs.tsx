@@ -42,8 +42,9 @@ const Tabs: React.FC<ITabs> = ({
   ];
   return (
     <>
-      {tabItems.map((tabItem: tabItemsType) => (
+      {tabItems.map((tabItem: tabItemsType, index) => (
         <li
+          key={`${tabItem.title}__${index}`}
           onClick={() => setActive(tabItem.category)}
           className={classNames('main-content__list-item', {
             'list-item-active': active === tabItem.category,

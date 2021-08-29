@@ -26,7 +26,7 @@ const MainContentReward: React.FC = () => {
   const [active, setActive] = useState('all');
 
   const onSendReward = (titleText: string) => {
-    setRewardItems({ titleText, category: 'season', cost: 10 });
+    setRewardItems({ id: items.length - 1 + 1, titleText, category: 'season', cost: 10 });
   };
   const handleAddReward = (e: React.FormEvent) => {
     e.preventDefault();
@@ -73,10 +73,11 @@ const MainContentReward: React.FC = () => {
         <div className='item-main-content__wrapper'>
           {items.map((item: any, index: number) => (
             <MainContentRewardTask
+              id={item.id}
               key={`${index}`}
               titleText={item.titleText}
               supText={item.supText}
-              cost={item.cost ? item.cost : 10}
+              cost={item.cost}
               isShow={true ? item.category === active || active === 'all' : false}
             />
           ))}

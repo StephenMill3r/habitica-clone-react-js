@@ -1,7 +1,7 @@
 const StarIcon: React.FC = () => {
   return (
     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
-      <g fill='none' fill-rule='evenodd'>
+      <g fill='none' fillRule='evenodd'>
         <path fill='#FFA623' d='M16 16l8-4-8-4-4-8-4 8-8 4 8 4 4 8z'></path>
         <path
           fill='#FFF'

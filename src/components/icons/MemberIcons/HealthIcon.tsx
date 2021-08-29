@@ -1,7 +1,7 @@
 const HealthIcon: React.FC = () => {
   return (
     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
-      <g fill='none' fill-rule='evenodd'>
+      <g fill='none' fillRule='evenodd'>
         <path
           fill='#F74E52'
           d='M2 4.5L6.167 2 12 5.167 17.833 2 22 4.5V12l-4.167 5.833L12 22l-5.833-4.167L2 12z'></path>

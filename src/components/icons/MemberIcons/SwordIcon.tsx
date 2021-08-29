@@ -7,7 +7,7 @@ const SwordIcon: React.FC = () => {
       <defs>
         <path id='a' d='M31.392 9.115l-6.791 7.124v6.314l6.791-6.791V9.115z'></path>
       </defs>
-      <g fill='none' fill-rule='evenodd' transform='translate(0 1)'>
+      <g fill='none' fillRule='evenodd' transform='translate(0 1)'>
         <path
           fill='#F06166'
           d='M18.39 28.762l6.334 2.92c.526.243.868.732.999 1.297.219.948.883 3.156.937 4.33a.88.88 0 0 1-1.24.844l-10.588-5.07a1.781 1.781 0 0 1-.762-.763L9 21.733a.88.88 0 0 1 .844-1.24c1.173.054 3.335.683 4.33.937.56.142 1.054.472 1.296.998l2.92 6.334z'></path>

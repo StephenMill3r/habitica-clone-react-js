@@ -513,10 +513,10 @@ body {
   }
   &__icon {
     margin: 12px 13px;
-    background: url(https://habitica.com/static/img/spritesmith-main-16.7d50292b.png);
+    background: url(https://habitica.com/static/img/spritesmith-main-16.bc29db48.png);
     width: 58px;
     height: 58px;
-    background-position: -276px -1424px;
+    background-position: 0 -1424px;
   }
   &__price {
     @include flexbox();
@@ -719,5 +719,9 @@ body {
   opacity: 1;
   pointer-events: all;
 }
-
+.modal-change {
+  input {
+    border: 1px solid #ffbe5d;
+  }
+}
 //</ОСНОВНОЙ БЛОК>====================================================================================================

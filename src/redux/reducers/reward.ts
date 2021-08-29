@@ -16,6 +16,27 @@ export const reward = (state = initialState, action: rewardActions): rewardState
   switch (action.type) {
     case rewardActionsType.SET_REWARD_ITEMS:
       return { ...state, items: [...state.items, action.payload] };
+    case rewardActionsType.SET_REWARD_CHANGE_TASK:
+      return {
+        ...state,
+        items: state.items.map((item: any) =>
+          item.id === action.id
+            ? {
+                ...item,
+                titleText: action.titleText,
+                supText: action.supText,
+                cost: action.cost,
+              }
+            : item,
+        ),
+      };
+    case rewardActionsType.SET_DELETE_REWARD_TASK:
+      const newItems = [...state.items];
+      newItems.splice(action.payload);
+      return {
+        ...state,
+        items: newItems,
+      };
     default:
       return state;
   }

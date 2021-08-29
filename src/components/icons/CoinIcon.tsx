@@ -1,7 +1,7 @@
 const CoinIcon: React.FC = () => {
   return (
     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
-      <g fill='none' fill-rule='evenodd'>
+      <g fill='none' fillRule='evenodd'>
         <circle cx='12' cy='12' r='12' fill='#FFA623'></circle>
         <path
           fill='#FFF'
