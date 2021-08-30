@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { MemberHealth, MemberLevel } from '..';
 import { SwordIcon } from '..';
 import { useActions } from '../../redux/typeHooks/useActions';
@@ -11,35 +11,28 @@ export interface IMemberInfo {
 }
 
 const MemberInfo: React.FC = () => {
-  const { setResetUserLevel, setResetUserHealth } = useActions();
+  const { setResetUserLevel, setResetUserHealth, setIncreaseUserLevelPoint, setIncreaseUserLevel } =
+    useActions();
 
-  const { levelPoint, healthPoint } = useTypedSelector((state) => state.user);
-
-  const [memberInfo, setMemberInfo] = useState<IMemberInfo>({
-    level: 1,
-    point: 25,
-    health: 50,
-  });
+  const { levelPoint, healthPoint, level, maxHealthPoint, maxLevelPoint } = useTypedSelector(
+    (state) => state.user,
+  );
 
   useEffect(() => {
-    if (levelPoint > memberInfo.point) {
-      setMemberInfo({
-        ...memberInfo,
-        point: Math.floor(memberInfo.point * 1.4),
-        level: memberInfo.level + 1,
-      });
+    if (levelPoint > maxLevelPoint) {
+      setIncreaseUserLevelPoint();
+      setIncreaseUserLevel();
       setResetUserLevel();
     } else if (levelPoint < 0) {
       setResetUserLevel();
     }
   }, [levelPoint]);
 
-  //Переделать
   useEffect(() => {
     if (0 >= healthPoint) {
       setResetUserHealth();
     }
-    if (healthPoint > memberInfo.health) {
+    if (healthPoint > maxHealthPoint) {
       setResetUserHealth();
     }
   }, [healthPoint]);
@@ -52,11 +45,11 @@ const MemberInfo: React.FC = () => {
             <SwordIcon />
           </div>
           <div className='member__wrapper'>
-            <div className='member__supinfo'>Уровень {memberInfo.level} Воин</div>
+            <div className='member__supinfo'>Уровень {level} Воин</div>
           </div>
         </div>
-        <MemberHealth healthPoint={healthPoint} memberInfo={memberInfo} />
-        <MemberLevel levelPoint={levelPoint} memberInfo={memberInfo} />
+        <MemberHealth healthPoint={healthPoint} maxHealthPoint={maxHealthPoint} />
+        <MemberLevel levelPoint={levelPoint} maxLevelPoint={maxLevelPoint} />
       </div>
     </div>
   );

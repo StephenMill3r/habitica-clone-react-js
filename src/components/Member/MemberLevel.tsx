@@ -1,12 +1,11 @@
 import { StarIcon } from '..';
-import { IMemberInfo } from './MemberInfo';
 
 interface IMemberLevel {
   levelPoint: number;
-  memberInfo: IMemberInfo;
+  maxLevelPoint: number;
 }
 
-const MemberLevel: React.FC<IMemberLevel> = ({ levelPoint, memberInfo }) => {
+const MemberLevel: React.FC<IMemberLevel> = ({ levelPoint, maxLevelPoint }) => {
   return (
     <div className='member__star member__data'>
       <div className='member__icon'>
@@ -16,11 +15,11 @@ const MemberLevel: React.FC<IMemberLevel> = ({ levelPoint, memberInfo }) => {
         <span
           className='progress-bar-fill progress-bar-yellow'
           style={{
-            width: (levelPoint > 0 ? levelPoint / memberInfo.point : 0) * 100 + '%',
+            width: (levelPoint > 0 ? levelPoint / maxLevelPoint : 0) * 100 + '%',
           }}></span>
       </div>
       <div className='member__count'>
-        {levelPoint > 0 ? levelPoint : 0}/{memberInfo.point}
+        {levelPoint > 0 ? levelPoint : 0}/{maxLevelPoint}
       </div>
     </div>
   );

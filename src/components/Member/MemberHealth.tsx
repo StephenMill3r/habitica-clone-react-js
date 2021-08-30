@@ -1,12 +1,11 @@
 import { HealthIcon } from '..';
-import { IMemberInfo } from './MemberInfo';
 
 interface IMemberHealth {
   healthPoint: number;
-  memberInfo: IMemberInfo;
+  maxHealthPoint: number;
 }
 
-const MemberHealth: React.FC<IMemberHealth> = ({ healthPoint, memberInfo }) => {
+const MemberHealth: React.FC<IMemberHealth> = ({ healthPoint, maxHealthPoint }) => {
   return (
     <div className='member__health member__data'>
       <div className='member__icon'>
@@ -16,11 +15,11 @@ const MemberHealth: React.FC<IMemberHealth> = ({ healthPoint, memberInfo }) => {
         <span
           className='progress-bar-fill'
           style={{
-            width: (healthPoint > 0 ? healthPoint / memberInfo.health : 0) * 100 + '%',
+            width: (healthPoint > 0 ? healthPoint / maxHealthPoint : 0) * 100 + '%',
           }}></span>
       </div>
       <div className='member__count'>
-        {healthPoint > 0 ? healthPoint : 0}/{memberInfo.health}
+        {healthPoint > 0 ? healthPoint : 0}/{maxHealthPoint}
       </div>
     </div>
   );

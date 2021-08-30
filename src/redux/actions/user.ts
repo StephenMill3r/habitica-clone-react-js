@@ -33,3 +33,11 @@ export const setUserMoney = (payload: number): userActions => {
 export const setMinusUserMoney = (payload: number): userActions => {
   return { type: userActionsType.SET_MINUS_USER_MONEY, payload };
 };
+
+export const setIncreaseUserLevelPoint = (): userActions => {
+  return { type: userActionsType.SET_INCREASE_USER_LEVEL_POINT };
+};
+
+export const setIncreaseUserLevel = (): userActions => {
+  return { type: userActionsType.SET_INCREASE_USER_LEVEL };
+};

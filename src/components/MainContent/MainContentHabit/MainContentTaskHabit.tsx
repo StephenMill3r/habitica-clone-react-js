@@ -154,13 +154,19 @@ const MainContentTaskHabit: React.FC<IMainContentTaskHabit> = ({
         <div className='modal__body'>
           <div className='modal__icons'>
             <div onClick={handleChangeIsBadTask(false)} className='modal__icon-item'>
-              <div className='modal__icon modal__icon-active'>
+              <div
+                className={classNames('modal__icon', {
+                  'modal__icon-active': !isBadTaskModal,
+                })}>
                 <div className='item-main-content__plus'>+</div>
               </div>
               <div className='modal__description'>Полезная</div>
             </div>
             <div onClick={handleChangeIsBadTask(true)} className='modal__icon-item'>
-              <div className='modal__icon'>
+              <div
+                className={classNames('modal__icon', {
+                  'modal__icon-active': isBadTaskModal,
+                })}>
                 <div className='item-main-content__minus'>
                   <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 2'>
                     <path fillRule='evenodd' d='M0 0h10v2H0z'></path>

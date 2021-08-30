@@ -2,6 +2,9 @@ export interface userState {
   levelPoint: number;
   healthPoint: number;
   money: number;
+  level: number;
+  maxHealthPoint: number;
+  maxLevelPoint: number;
 }
 
 export enum userActionsType {
@@ -13,6 +16,8 @@ export enum userActionsType {
   SET_RESET_USER_HEALTH = 'SET_RESET_USER_HEALTH',
   SET_USER_MONEY = 'SET_USER_MONEY',
   SET_MINUS_USER_MONEY = 'SET_MINUS_USER_MONEY',
+  SET_INCREASE_USER_LEVEL_POINT = 'SET_INCREASE_USER_LEVEL_POINT',
+  SET_INCREASE_USER_LEVEL = 'SET_INCREASE_USER_LEVEL',
 }
 
 interface setUserLevelType {
@@ -52,6 +57,14 @@ interface setMinusMoneyUserType {
   type: userActionsType.SET_MINUS_USER_MONEY;
   payload: number;
 }
+
+interface setIncreaseUserLevelPointType {
+  type: userActionsType.SET_INCREASE_USER_LEVEL_POINT;
+}
+
+interface setIncreaseUserLevelType {
+  type: userActionsType.SET_INCREASE_USER_LEVEL;
+}
 export type userActions =
   | setUserHealthType
   | setUserLevelType
@@ -60,4 +73,6 @@ export type userActions =
   | setMinusUserHealthType
   | setResetUserHealthType
   | setMoneyUserType
-  | setMinusMoneyUserType;
+  | setMinusMoneyUserType
+  | setIncreaseUserLevelPointType
+  | setIncreaseUserLevelType;
