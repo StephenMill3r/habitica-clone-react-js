@@ -31,11 +31,9 @@ export const reward = (state = initialState, action: rewardActions): rewardState
         ),
       };
     case rewardActionsType.SET_DELETE_REWARD_TASK:
-      const newItems = [...state.items];
-      newItems.splice(action.payload);
       return {
         ...state,
-        items: newItems,
+        items: state.items.filter((item) => item.id !== action.payload),
       };
     default:
       return state;

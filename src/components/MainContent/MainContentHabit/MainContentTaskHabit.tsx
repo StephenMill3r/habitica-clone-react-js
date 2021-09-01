@@ -61,7 +61,8 @@ const MainContentTaskHabit: React.FC<IMainContentTaskHabit> = ({
       }
     };
   const onSendChangeHabit = (titleText: string, supText: string, diff: number) => {
-    setHabitChangeTask(id, isBadTaskModal, titleText, supText, diff);
+    setHabitChangeTask(id, isBadTaskModal, titleText, supText, diff, isBadTaskModal ? false : true);
+
     setModalActive(false);
   };
 

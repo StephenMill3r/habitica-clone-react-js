@@ -24,8 +24,17 @@ export const setHabitChangeTask = (
   titleText: string,
   supText: string,
   diff: number,
+  isSucsessTask: boolean,
 ): habitActions => {
-  return { type: habitActionsType.SET_HABIT_CHANGE_TASK, isBadTask, id, titleText, supText, diff };
+  return {
+    type: habitActionsType.SET_HABIT_CHANGE_TASK,
+    isBadTask,
+    id,
+    titleText,
+    supText,
+    diff,
+    isSucsessTask,
+  };
 };
 
 export const setDeleteHabitTask = (payload: number): habitActions => {

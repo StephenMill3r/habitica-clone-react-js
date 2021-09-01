@@ -115,7 +115,7 @@ const MainContentRewardTask: React.FC<IMainContentRewardTask> = ({
             />
           </div>
           <div onClick={onClickDeleteTask} className='modal__footer'>
-            Удалить привычку
+            Удалить награду
           </div>
         </div>
       </Modal>

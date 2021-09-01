@@ -28,7 +28,7 @@ export const user = (state = initialState, action: userActions): userState => {
     case userActionsType.SET_MINUS_USER_MONEY:
       return { ...state, money: state.money - action.payload };
     case userActionsType.SET_INCREASE_USER_LEVEL_POINT:
-      return { ...state, maxLevelPoint: state.maxLevelPoint * 1.4 };
+      return { ...state, maxLevelPoint: Math.floor(state.maxLevelPoint * 1.4) };
     case userActionsType.SET_INCREASE_USER_LEVEL:
       return { ...state, level: state.level + 1 };
     default:

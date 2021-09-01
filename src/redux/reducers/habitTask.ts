@@ -3,7 +3,7 @@ import { habitActions, habitActionsType, habitState } from '../typesRedux/habitT
 const initialState: habitState = {
   items: [
     {
-      id: 0,
+      id: 1,
       category: 'weak',
       titleText: 'Плохая привычка',
       supText: '',
@@ -13,7 +13,7 @@ const initialState: habitState = {
       diff: 1,
     },
     {
-      id: 1,
+      id: 2,
       category: 'weak',
       titleText: 'Проверить почту',
       isBadTask: false,
@@ -60,17 +60,16 @@ export const habitTask = (state = initialState, action: habitActions): habitStat
                 titleText: action.titleText,
                 supText: action.supText,
                 isBadTask: action.isBadTask,
+                isSucsessTask: action.isSucsessTask,
                 diff: action.diff + 1,
               }
             : item,
         ),
       };
     case habitActionsType.SET_DELETE_HABIT_TASK:
-      const newItems = [...state.items];
-      newItems.splice(action.payload);
       return {
         ...state,
-        items: newItems,
+        items: state.items.filter((item) => item.id !== action.payload),
       };
     default:
       return state;

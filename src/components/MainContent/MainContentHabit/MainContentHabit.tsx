@@ -12,7 +12,13 @@ const MainContentHabit: React.FC = () => {
   const [text, setText] = useState<string>('');
 
   const onSendHabit = (text: string) => {
-    setHabitItems({ id: items.length - 1 + 1, category: 'weak', titleText: text, count: 0 });
+    setHabitItems({
+      id: items.length + 1,
+      category: 'weak',
+      titleText: text,
+      count: 0,
+      diff: 1,
+    });
   };
   const handleAddHabit = (e: React.FormEvent) => {
     e.preventDefault();

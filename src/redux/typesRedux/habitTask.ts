@@ -46,6 +46,7 @@ interface setHabitChangeTaskType {
   type: habitActionsType.SET_HABIT_CHANGE_TASK;
   id: number;
   isBadTask: boolean;
+  isSucsessTask: boolean;
   titleText: string;
   supText: string;
   diff: number;
