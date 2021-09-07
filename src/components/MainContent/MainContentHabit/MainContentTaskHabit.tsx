@@ -14,7 +14,7 @@ interface IMainContentTaskHabit {
   supText: string;
   taskDiff: number;
 }
-const diff = ['Пустяк', 'Легко', 'Нормально', 'Сложно'];
+export const diff = ['Пустяк', 'Легко', 'Нормально', 'Сложно'];
 
 const MainContentTaskHabit: React.FC<IMainContentTaskHabit> = ({
   text,
@@ -42,6 +42,7 @@ const MainContentTaskHabit: React.FC<IMainContentTaskHabit> = ({
   const [modalSupText, setModalSupText] = useState<string>(supText);
   const [isBadTaskModal, setIsBadTaskModal] = useState<boolean>(isBadTask);
 
+  //Отбирает хп, при клике по плохой привычке
   const onClickBadHabitTask =
     (health: number, id: number) => (event: React.MouseEvent<HTMLElement>) => {
       if (isBadTask) {
@@ -50,7 +51,7 @@ const MainContentTaskHabit: React.FC<IMainContentTaskHabit> = ({
         notifyError('жизни', health * taskDiff, <HealthIcon />);
       }
     };
-
+  //Дает опыт при клике по хорошей привычке(в зависимости от уровня сложности таски)
   const onClickSucsessTask =
     (id: number, level: number) => (event: React.MouseEvent<HTMLElement>) => {
       if (!isBadTask) {
@@ -60,16 +61,18 @@ const MainContentTaskHabit: React.FC<IMainContentTaskHabit> = ({
         notifySuccess('опыта', level * taskDiff, <StarIcon />);
       }
     };
+
+  //Редактирование сложности, описания, названия, смена таски(хорошая-плохая) в модальном окне
   const onSendChangeHabit = (titleText: string, supText: string, diff: number) => {
     setHabitChangeTask(id, isBadTaskModal, titleText, supText, diff, isBadTaskModal ? false : true);
-
     setModalActive(false);
   };
 
+  //Отоброжение и изменение принадлежности таски(хорошая-плохая) в модальном окне
   const handleChangeIsBadTask = (value: boolean) => () => {
     setIsBadTaskModal(value);
   };
-
+  //Удаление такси
   const onClickDeleteTask = () => {
     setDeleteHabitTask(id);
     setModalActive(false);

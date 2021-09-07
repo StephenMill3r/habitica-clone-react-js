@@ -1,9 +1,9 @@
 import React from 'react';
 import classNames from 'classnames';
-import { StarIcon, HealthIcon, notifyError, notifySuccess } from '..';
-import { useActions } from '../../redux/typeHooks/useActions';
+import { StarIcon, HealthIcon, notifyError, notifySuccess } from '../..';
+import { useActions } from '../../../redux/typeHooks/useActions';
 
-interface IMainContentTask {
+interface IMainContentTaskDaily {
   titleText: string;
   supText: string;
   id: number;
@@ -14,7 +14,7 @@ interface IMainContentTask {
   health: number;
 }
 
-const MainContentTask: React.FC<IMainContentTask> = ({
+const MainContentTaskDaily: React.FC<IMainContentTaskDaily> = ({
   titleText,
   supText,
   id,
@@ -92,4 +92,4 @@ const MainContentTask: React.FC<IMainContentTask> = ({
   );
 };
 
-export default MainContentTask;
+export default MainContentTaskDaily;

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { MainContentTask, Tabs } from '../../';
+import { MainContentTaskDaily, Tabs } from '../../';
 import { useActions } from '../../../redux/typeHooks/useActions';
 import { useTypedSelector } from '../../../redux/typeHooks/useTypedSelector';
 
@@ -66,7 +66,7 @@ const MainContentDaily: React.FC = () => {
         </div>
         <div className='item-main-content__wrapper'>
           {items.map((item: any, index: number) => (
-            <MainContentTask
+            <MainContentTaskDaily
               key={`${index}`}
               id={item.id}
               isCompletedTask={item.isCompletedTask}

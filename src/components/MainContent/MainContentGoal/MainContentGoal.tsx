@@ -9,16 +9,15 @@ const MainContentGoal: React.FC = () => {
   const { items } = useTypedSelector((state) => state.goal);
 
   const [text, setText] = useState<string>('');
-  const [active, setActive] = useState('active');
+  const [active, setActive] = useState<string>('active');
 
   const onSendGoal = (titleText: string) => {
     setGoalItems({
-      id: items.length - 1 + 1,
+      id: items.length + 1,
       titleText,
       category: 'active',
-      exp: 10,
-      health: 7,
       isCompletedTask: false,
+      diff: 1,
     });
   };
   const handleAddGoal = (e: React.FormEvent) => {
@@ -26,7 +25,7 @@ const MainContentGoal: React.FC = () => {
     onSendGoal(text);
     setText('');
   };
-  const handleKeyDown = (e: any) => {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
       e.preventDefault();
       handleAddGoal(e);
@@ -64,7 +63,7 @@ const MainContentGoal: React.FC = () => {
           </div>
         </div>
         <div className='item-main-content__wrapper'>
-          {items.map((item: any, index: number) => (
+          {items.map((item, index: number) => (
             <MainContentGoalTask
               key={`${index}`}
               id={item.id}
@@ -72,8 +71,8 @@ const MainContentGoal: React.FC = () => {
               isShow={true ? item.category === active : false}
               titleText={item.titleText}
               supText={item.supText}
-              exp={item.exp}
-              health={item.health}
+              taskDiff={item.diff}
+              calculatedDate={item.remainDay}
             />
           ))}
           <div className='item-main-content__note note-item-main-content'>

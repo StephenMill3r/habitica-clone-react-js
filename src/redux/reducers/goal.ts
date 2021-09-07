@@ -6,9 +6,10 @@ const initialState: goalState = {
       id: 0,
       category: 'active',
       titleText: 'Растяжка > Ежедневная тренировка',
+      supText: '',
       isCompletedTask: false,
-      exp: 10,
-      health: 7,
+      diff: 1,
+      remainDay: 1,
     },
   ],
 };
@@ -24,6 +25,33 @@ export const goal = (state = initialState, action: goalActions): goalState => {
           item.id === action.payload
             ? { ...item, isCompletedTask: true, category: 'completed' }
             : item,
+        ),
+      };
+    case goalActionsType.SET_GOAL_CHANGE_TASK:
+      return {
+        ...state,
+        items: state.items.map((item: any) =>
+          item.id === action.id
+            ? {
+                ...item,
+                titleText: action.titleText,
+                supText: action.supText,
+                diff: action.diff + 1,
+                remainDay: action.remainDay,
+              }
+            : item,
+        ),
+      };
+    case goalActionsType.SET_DELETE_GOAL_TASK:
+      return {
+        ...state,
+        items: state.items.filter((item) => item.id !== action.payload),
+      };
+    case goalActionsType.SET_GOAL_CHANGE_CATEGORY:
+      return {
+        ...state,
+        items: state.items.map((item: any) =>
+          item.id === action.id ? { ...item, category: action.category } : item,
         ),
       };
     default:

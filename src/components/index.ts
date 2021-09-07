@@ -7,7 +7,7 @@ export { default as MemberLevel } from './Member/MemberLevel';
 export { default as MemberInfo } from './Member/MemberInfo';
 
 export { default as MainContent } from './MainContent/MainContent';
-export { default as MainContentTask } from './MainContent/MainContentTask';
+export { default as MainContentTaskDaily } from './MainContent/MainContentDaily/MainContentTaskDaily';
 
 export { default as MainContentDaily } from './MainContent/MainContentDaily/MainContentDaily';
 
