@@ -1,23 +1,29 @@
 import { useState } from 'react';
+
 import { MainContentRewardTask, Tabs, MainContentRewardItem } from '../..';
 import { useActions } from '../../../redux/typeHooks/useActions';
 import { useTypedSelector } from '../../../redux/typeHooks/useTypedSelector';
-
+import SwordOneImg from '../../helpers/images/Item__00.png';
 const shopItems = [
   {
+    category: 'Health flask',
     name: 'Health flask',
     price: 25,
+    img: '',
   },
   {
-    name: 'Health flask',
-    price: 25,
+    category: 'Thing',
+    name: 'Sword 1 type',
+    price: 5,
+    img: SwordOneImg,
   },
   {
+    category: 'Health flask',
     name: 'Health flask',
     price: 25,
+    img: '',
   },
 ];
-
 const MainContentReward: React.FC = () => {
   const { setRewardItems } = useActions();
   const { items } = useTypedSelector((state) => state.reward);
@@ -67,20 +73,25 @@ const MainContentReward: React.FC = () => {
                 onChange={(e) => setText(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder='Добавить награду'></textarea>
+              <div className='item-main-content__button'>
+                <button className='btn'>Добавить награду</button>
+              </div>
             </form>
           </div>
         </div>
         <div className='item-main-content__wrapper'>
-          {items.map((item: any, index: number) => (
-            <MainContentRewardTask
-              id={item.id}
-              key={`${index}`}
-              titleText={item.titleText}
-              supText={item.supText}
-              cost={item.cost}
-              isShow={true ? item.category === active || active === 'all' : false}
-            />
-          ))}
+          <div className='dragle-test'>
+            {items.map((item: any, index: number) => (
+              <MainContentRewardTask
+                id={item.id}
+                key={`${index}`}
+                titleText={item.titleText}
+                supText={item.supText}
+                cost={item.cost}
+                isShow={true ? item.category === active || active === 'all' : false}
+              />
+            ))}
+          </div>
           <div className='item-main-content__shop shop-main-content'>
             <div className='shop-main-content__row'>
               {shopItems.map((shopItem, index) => (

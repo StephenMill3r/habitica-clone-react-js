@@ -61,6 +61,9 @@ const MainContentHabit: React.FC = () => {
                   onChange={(e) => setText(e.target.value)}
                   onKeyDown={handleKeyDown}
                   placeholder='Добавить привычку'></textarea>
+                <div className='item-main-content__button'>
+                  <button className='btn'>Добавить привычку</button>
+                </div>
               </form>
             </div>
           </div>

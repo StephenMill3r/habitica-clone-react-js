@@ -10,14 +10,11 @@ const Member: React.FC = () => {
           </div>
           <div className='member__column'>
             <div className='member__text-wrapper'>
-              <div className='member__title'>Побеждайте монстров с друзьями</div>
+              <div className='member__title'>Мотивируйте себя на достижение ваших целей</div>
               <p className='member__main-text'>
-                Пригласив друга в команду, вы получите уникальный <br />
-                свиток квеста для совместного сражения с Василистом!
+                Пора повеселиться, делая дела! Присоединяйся к более чем 4 миллионам жителей
+                Хабитики и улучшай свою жизнь, выполняя задания одно за другим.
               </p>
-              <div className='member__button'>
-                <button className='member__btn btn'>Создать команду</button>
-              </div>
             </div>
           </div>
         </div>

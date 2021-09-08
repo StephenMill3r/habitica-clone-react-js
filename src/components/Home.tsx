@@ -1,9 +1,8 @@
-import { Member, MainContent } from '.';
+import { MainContent } from '.';
 
 const Home = () => {
   return (
     <>
-      <Member />
       <MainContent />
     </>
   );

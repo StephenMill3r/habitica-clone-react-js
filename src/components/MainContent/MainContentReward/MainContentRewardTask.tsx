@@ -49,29 +49,31 @@ const MainContentRewardTask: React.FC<IMainContentRewardTask> = ({
     setModalActive(false);
   };
   return (
-    <div
-      className={classNames('item-main-content__task', {
-        'item-main-content__show-task': isShow,
-      })}>
-      <div className='item-main-content__middle'>
-        <div className='item-main-content__text-wrapper'>
-          <p className='item-main-content__text'>{titleText}</p>
-          <svg
-            onClick={() => setModalActive(true)}
-            xmlns='http://www.w3.org/2000/svg'
-            viewBox='0 0 4 16'>
-            <path
-              fillRule='evenodd'
-              d='M2 4a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 6a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 6a2 2 0 1 1 0-4 2 2 0 0 1 0 4z'></path>
-          </svg>
+    <>
+      <div
+        className={classNames('item-main-content__task', {
+          'item-main-content__show-task': isShow,
+        })}>
+        <div className='item-main-content__middle'>
+          <div className='item-main-content__text-wrapper'>
+            <p className='item-main-content__text'>{titleText}</p>
+            <svg
+              onClick={() => setModalActive(true)}
+              xmlns='http://www.w3.org/2000/svg'
+              viewBox='0 0 4 16'>
+              <path
+                fillRule='evenodd'
+                d='M2 4a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 6a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 6a2 2 0 1 1 0-4 2 2 0 0 1 0 4z'></path>
+            </svg>
+          </div>
+          <p className='item-main-content__suptext'>{supText}</p>
         </div>
-        <p className='item-main-content__suptext'>{supText}</p>
-      </div>
-      <div onClick={onClickSpendMoney} className='item-main-content__coin'>
-        <div className='svg-icon'>
-          <CoinIcon />
+        <div onClick={onClickSpendMoney} className='item-main-content__coin'>
+          <div className='svg-icon'>
+            <CoinIcon />
+          </div>
+          <span>{cost}</span>
         </div>
-        <span>{cost}</span>
       </div>
       <Modal active={modalActive} setModalActive={setModalActive}>
         <div className='modal__header'>
@@ -119,7 +121,7 @@ const MainContentRewardTask: React.FC<IMainContentRewardTask> = ({
           </div>
         </div>
       </Modal>
-    </div>
+    </>
   );
 };
 

@@ -61,6 +61,9 @@ const MainContentDaily: React.FC = () => {
                 onChange={(e) => setText(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder='Добавить ежедневное дело'></textarea>
+              <div className='item-main-content__button'>
+                <button className='btn'>Добавить дело</button>
+              </div>
             </form>
           </div>
         </div>

@@ -1,5 +1,9 @@
 export { default as Header } from './Header';
 export { default as Home } from './Home';
+export { default as NavSite } from './NavSite';
+
+export { default as Inventory } from './../pages/inventory/Inventory';
+export { default as InventoryThing } from './../pages/inventory/InventoryThing';
 
 export { default as Member } from './Member/Member';
 export { default as MemberHealth } from './Member/MemberHealth';
@@ -26,6 +30,8 @@ export { default as notifyError } from './helpers/notifyError';
 export { default as notifySuccess } from './helpers/notifySuccess';
 export { default as Tabs } from './helpers/Tabs';
 export { default as Modal } from './helpers/Modal';
+export { default as Burger } from './helpers/Burger/Burger';
+export { default as RightNav } from './helpers/Burger/RightNav';
 
 export { default as SwordIcon } from './icons/MemberIcons/SwordIcon';
 export { default as StarIcon } from './icons/StarIcon';

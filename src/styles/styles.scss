@@ -62,11 +62,19 @@ body {
   padding: 80px 0px 30px 70px;
   background: #36205d;
   color: #d5c8ff;
+  @media (max-width: 767px) {
+    padding: 80px 0px 30px 10px;
+  }
   &__row {
     @include flexbox();
   }
   &__column {
     flex: 0 1 50%;
+    .member__text-wrapper {
+      @media (max-width: 767px) {
+        display: none;
+      }
+    }
   }
   &__data {
     @include flexbox();
@@ -244,12 +252,25 @@ body {
     @include flexbox();
     margin: 0 -10px;
     padding-top: 18px;
+    @media (max-width: 1430px) {
+      flex-wrap: wrap;
+    }
   }
   &__column {
     padding: 0 10px;
     flex: 0 1 25%;
     @include flexbox();
     flex-direction: column;
+    @media (max-width: 1430px) {
+      flex: 0 1 33.333%;
+      padding-bottom: 20px;
+    }
+    @media (max-width: 1080px) {
+      flex: 0 1 50%;
+    }
+    @media (max-width: 767px) {
+      flex: 0 1 100%;
+    }
   }
   &__info {
     @include flexbox();
@@ -305,6 +326,14 @@ body {
         background: #fff;
         border: 1px solid rgb(189, 168, 255);
       }
+    }
+  }
+  &__button {
+    display: none;
+    text-align: center;
+    padding: 2px 0px 10px 0px;
+    @media (max-width: 998.98px) {
+      display: block;
     }
   }
   &__task {
@@ -523,11 +552,11 @@ body {
     box-shadow: 0 1px 3px 0 rgb(26 24 29 / 12%), 0 1px 2px 0 rgb(26 24 29 / 24%);
   }
   &__icon {
-    margin: 12px 13px;
-    background: url('../components/helpers/images/itemsImage.png');
-    width: 58px;
-    height: 58px;
-    background-position: -207px -1424px;
+    margin: 15px 20px;
+    img {
+      width: 58px;
+      height: 58px;
+    }
   }
   &__price {
     @include flexbox();
@@ -751,6 +780,38 @@ body {
     }
   }
 }
+
+.inventory {
+  height: calc(50vh);
+  background: #edecee;
+  box-shadow: 0 2px 2px 0 rgb(26 24 29 / 16%), 0 1px 4px 0 rgb(26 24 29 / 12%);
+  padding: 0 10px;
+  &__row {
+    @include flexbox();
+    margin: 0 -10px;
+    padding-top: 10px;
+    justify-content: center;
+  }
+  &__column {
+    flex: 0 1 10%;
+    padding: 0 10px;
+    @include flexbox();
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  &__item {
+    background: #fff;
+    text-align: center;
+    padding: 10px;
+    max-width: 130px;
+    border-radius: 10px;
+  }
+  &__img {
+    margin-bottom: 10px;
+  }
+}
+
 .modal.active {
   opacity: 1;
   pointer-events: all;
@@ -760,4 +821,5 @@ body {
     border: 1px solid #ffbe5d;
   }
 }
+
 //</ОСНОВНОЙ БЛОК>====================================================================================================

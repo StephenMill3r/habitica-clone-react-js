@@ -59,6 +59,9 @@ const MainContentGoal: React.FC = () => {
                 onChange={(e) => setText(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder='Добавить задачу'></textarea>
+              <div className='item-main-content__button'>
+                <button className='btn'>Добавить задачу</button>
+              </div>
             </form>
           </div>
         </div>
