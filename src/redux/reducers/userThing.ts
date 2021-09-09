@@ -1,14 +1,7 @@
 import { userThingActions, userThingActionsType, userThingState } from '../typesRedux/userThing';
 
 const initialState: userThingState = {
-  items: [
-    {
-      category: 'flask',
-      name: 'Health flask',
-      price: 25,
-      img: '',
-    },
-  ],
+  items: [],
 };
 
 export const userThing = (state = initialState, action: userThingActions): userThingState => {

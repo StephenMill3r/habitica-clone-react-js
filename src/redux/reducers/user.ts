@@ -6,7 +6,7 @@ const initialState: userState = {
   level: 1,
   maxLevelPoint: 25,
   maxHealthPoint: 50,
-  money: 110,
+  money: 0,
 };
 
 export const user = (state = initialState, action: userActions): userState => {

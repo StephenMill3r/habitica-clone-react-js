@@ -3,13 +3,17 @@ import { useState } from 'react';
 import { MainContentRewardTask, Tabs, MainContentRewardItem } from '../..';
 import { useActions } from '../../../redux/typeHooks/useActions';
 import { useTypedSelector } from '../../../redux/typeHooks/useTypedSelector';
+
 import SwordOneImg from '../../helpers/images/Item__00.png';
+import SwordSecondImg from '../../helpers/images/Item__01.png';
+import HealthFlaskImg from '../../helpers/images/HealthFlask.png';
+
 const shopItems = [
   {
     category: 'Health flask',
     name: 'Health flask',
-    price: 25,
-    img: '',
+    price: 5,
+    img: HealthFlaskImg,
   },
   {
     category: 'Thing',
@@ -18,10 +22,10 @@ const shopItems = [
     img: SwordOneImg,
   },
   {
-    category: 'Health flask',
-    name: 'Health flask',
-    price: 25,
-    img: '',
+    category: 'Thing',
+    name: 'Sword 2 type',
+    price: 5,
+    img: SwordSecondImg,
   },
 ];
 const MainContentReward: React.FC = () => {

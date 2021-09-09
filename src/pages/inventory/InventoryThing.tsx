@@ -12,7 +12,7 @@ const InventoryThing: React.FC<IInvetoryThing> = ({ img, name }) => {
         <div className='inventory__img'>
           <img src={img} alt={name} />
         </div>
-        <div className='invetory__title'>{name}</div>
+        <div className='inventory__title'>{name}</div>
       </div>
     </div>
   );

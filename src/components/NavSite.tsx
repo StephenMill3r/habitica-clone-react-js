@@ -22,16 +22,6 @@ const NavSite: React.FC<INavSite> = ({ open }) => {
             Инвентарь
           </NavLink>
         </li>
-        <li>
-          <a href='' className='menu__link'>
-            Испытания
-          </a>
-        </li>
-        <li>
-          <a href='' className='menu__link'>
-            Помощь
-          </a>
-        </li>
       </ul>
     </nav>
   );

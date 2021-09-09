@@ -9,7 +9,7 @@ const initialState: goalState = {
       supText: '',
       isCompletedTask: false,
       diff: 1,
-      remainDay: 1,
+      remainDay: 0,
     },
   ],
 };
