@@ -30,7 +30,6 @@ const Header: React.FC = () => {
               </svg>
             </div>
           </NavLink>
-
           <div className='menu__icon icon-menu'>
             <span></span>
             <span></span>

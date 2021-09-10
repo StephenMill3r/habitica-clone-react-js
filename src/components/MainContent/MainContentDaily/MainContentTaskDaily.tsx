@@ -36,7 +36,6 @@ const MainContentTaskDaily: React.FC<IMainContentTaskDaily> = ({
 
   const onClickLevelUpdate =
     (level: number, health: number) => (event: React.MouseEvent<HTMLElement>) => {
-      setDailySuccessTask(id);
       if (isCompletedTask) {
         setMinusUserLevel(level);
         setMinusUserHealth(health);
@@ -44,6 +43,8 @@ const MainContentTaskDaily: React.FC<IMainContentTaskDaily> = ({
         notifyError('жизни', health, <HealthIcon />);
         notifyError('опыта', level, <StarIcon />);
       } else {
+        setDailySuccessTask(id);
+
         setUserLevel(level);
         setUserHealth(health);
         setUserMoney(Math.floor(Math.random() * 10));

@@ -33,7 +33,7 @@ export const dailyTask = (state = initialState, action: dailyActions): dailyStat
         ...state,
         items: state.items.map((item: any) =>
           item.id === action.payload
-            ? { ...item, isCompletedTask: false, category: 'active', count: item.count - 2 }
+            ? { ...item, isCompletedTask: false, category: 'active', count: item.count - 1 }
             : item,
         ),
       };
