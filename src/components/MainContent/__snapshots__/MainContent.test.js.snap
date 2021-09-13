@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MainContent should render correctly without props 1`] = `
+<section
+  className="main-content"
+>
+  <div
+    className="container"
+  >
+    <div
+      className="main-content__top"
+    />
+    <div
+      className="main-content__row"
+    >
+      <MainContentHabit />
+      <MainContentDaily />
+      <MainContentGoal />
+      <MainContentReward />
+      <ToastContainer
+        autoClose={5000}
+        closeButton={[Function]}
+        closeOnClick={true}
+        draggable={true}
+        draggableDirection="x"
+        draggablePercent={80}
+        hideProgressBar={false}
+        newestOnTop={false}
+        pauseOnFocusLoss={true}
+        pauseOnHover={true}
+        position="top-right"
+        role="alert"
+        rtl={false}
+        transition={[Function]}
+      />
+    </div>
+  </div>
+</section>
+`;
+
+exports[`Member should render correctly without props 1`] = `
+<section
+  className="main-content"
+>
+  <div
+    className="container"
+  >
+    <div
+      className="main-content__top"
+    />
+    <div
+      className="main-content__row"
+    >
+      <MainContentHabit />
+      <MainContentDaily />
+      <MainContentGoal />
+      <MainContentReward />
+      <ToastContainer
+        autoClose={5000}
+        closeButton={[Function]}
+        closeOnClick={true}
+        draggable={true}
+        draggableDirection="x"
+        draggablePercent={80}
+        hideProgressBar={false}
+        newestOnTop={false}
+        pauseOnFocusLoss={true}
+        pauseOnHover={true}
+        position="top-right"
+        role="alert"
+        rtl={false}
+        transition={[Function]}
+      />
+    </div>
+  </div>
+</section>
+`;

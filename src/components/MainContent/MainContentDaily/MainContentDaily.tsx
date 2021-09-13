@@ -57,6 +57,7 @@ const MainContentDaily: React.FC = () => {
           <div className='item-main-content__add'>
             <form onSubmit={handleAddDaily}>
               <textarea
+                className='item-main-content__textarea'
                 value={text}
                 onChange={(e) => setText(e.target.value)}
                 onKeyDown={handleKeyDown}
