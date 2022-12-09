@@ -4,9 +4,9 @@ import { MainContentRewardTask, Tabs, MainContentRewardItem } from '../..';
 import { useActions } from '../../../redux/typeHooks/useActions';
 import { useTypedSelector } from '../../../redux/typeHooks/useTypedSelector';
 
-import SwordOneImg from '../../helpers/images/Item__00.png';
-import SwordSecondImg from '../../helpers/images/Item__01.png';
-import HealthFlaskImg from '../../helpers/images/HealthFlask.png';
+import SwordOneImg from '../../../assets/shopThings/Item__00.png';
+import SwordSecondImg from '../../../assets/shopThings/Item__01.png';
+import HealthFlaskImg from '../../../assets/shopThings/HealthFlask.png';
 
 const shopItems = [
   {

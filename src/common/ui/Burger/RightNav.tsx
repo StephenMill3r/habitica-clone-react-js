@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavSite } from '../..';
+import { NavSite } from '../../../components';
 
 interface IRightNav {
   open: boolean;

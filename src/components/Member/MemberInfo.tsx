@@ -1,14 +1,10 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
+
 import { MemberHealth, MemberLevel } from '..';
 import { SwordIcon } from '..';
+
 import { useActions } from '../../redux/typeHooks/useActions';
 import { useTypedSelector } from '../../redux/typeHooks/useTypedSelector';
-
-export interface IMemberInfo {
-  level: number;
-  point: number;
-  health: number;
-}
 
 const MemberInfo: React.FC = () => {
   const { setResetUserLevel, setResetUserHealth, setIncreaseUserLevelPoint, setIncreaseUserLevel } =

@@ -1,3 +1,5 @@
+import React from "react";
+
 import { MemberInfo } from '..';
 
 const Member: React.FC = () => {
