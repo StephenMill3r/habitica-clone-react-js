@@ -75,7 +75,7 @@ export const HabitTasks: React.FC = () => {
 						text={item.titleText}
 						isBadTask={item.isBadTask}
 						id={item.id}
-						isSucsessTask={item.isSucsessTask}
+						isSucsessTask={item.isSuccessTask}
 						isShow={item.category === active || active === 'all'}
 						count={item.count}
 						supText={item.supText}
