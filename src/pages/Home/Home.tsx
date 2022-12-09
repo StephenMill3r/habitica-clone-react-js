@@ -1,9 +1,9 @@
-import {MainContent} from '../../components';
+import {Tasks} from "../../components";
 
 export const Home = () => {
 	return (
 		<>
-			<MainContent/>
+			<Tasks/>
 		</>
 	);
 };

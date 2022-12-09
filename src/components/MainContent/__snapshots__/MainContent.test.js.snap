@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MainContent should render correctly without props 1`] = `
+exports[`Tasks should render correctly without props 1`] = `
 <section
   className="main-content"
 >
@@ -13,10 +13,10 @@ exports[`MainContent should render correctly without props 1`] = `
     <div
       className="main-content__row"
     >
-      <MainContentHabit />
-      <MainContentDaily />
-      <MainContentGoal />
-      <MainContentReward />
+      <HabitTasks />
+      <DailyTasks />
+      <ToDoTasks />
+      <RewardTasks />
       <ToastContainer
         autoClose={5000}
         closeButton={[Function]}
@@ -38,7 +38,7 @@ exports[`MainContent should render correctly without props 1`] = `
 </section>
 `;
 
-exports[`Member should render correctly without props 1`] = `
+exports[`User should render correctly without props 1`] = `
 <section
   className="main-content"
 >
@@ -51,10 +51,10 @@ exports[`Member should render correctly without props 1`] = `
     <div
       className="main-content__row"
     >
-      <MainContentHabit />
-      <MainContentDaily />
-      <MainContentGoal />
-      <MainContentReward />
+      <HabitTasks />
+      <DailyTasks />
+      <ToDoTasks />
+      <RewardTasks />
       <ToastContainer
         autoClose={5000}
         closeButton={[Function]}

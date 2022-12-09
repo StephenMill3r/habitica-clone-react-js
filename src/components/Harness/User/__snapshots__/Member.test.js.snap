@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Member should render correctly without props 1`] = `
+exports[`User should render correctly without props 1`] = `
 <section
   className="member"
 >
@@ -13,7 +13,7 @@ exports[`Member should render correctly without props 1`] = `
       <div
         className="member__column"
       >
-        <MemberInfo />
+        <UserInfo />
       </div>
       <div
         className="member__column"
@@ -51,7 +51,7 @@ exports[`NavSite should render correctly without props 1`] = `
       <div
         className="member__column"
       >
-        <MemberInfo />
+        <UserInfo />
       </div>
       <div
         className="member__column"

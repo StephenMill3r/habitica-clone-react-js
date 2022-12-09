@@ -1,8 +1,8 @@
 import React from "react";
 import {NavLink} from 'react-router-dom';
 
-import {Burger, CoinIcon} from '.';
-import {useTypedSelector} from '../redux/typeHooks/useTypedSelector';
+import {Burger, CoinIcon} from '../index';
+import {useTypedSelector} from '../../redux/typeHooks/useTypedSelector';
 
 export const Header: React.FC = () => {
 	const {money} = useTypedSelector((state) => state.user);

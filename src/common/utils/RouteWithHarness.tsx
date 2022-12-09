@@ -1,6 +1,6 @@
 import React, {FunctionComponent} from 'react';
 import {Route, RouteProps} from "react-router";
-import {Harness} from "../../components/harness/Harness";
+import {Harness} from "../../components/Harness/Harness";
 
 const RouteWithHarness: FunctionComponent<RouteProps> = ({component, ...otherProps}) => {
 
