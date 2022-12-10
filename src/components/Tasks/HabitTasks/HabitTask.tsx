@@ -1,15 +1,14 @@
 import React, {useState} from 'react';
 import classNames from 'classnames';
 
-import {HealthIcon, Modal, notifyError, notifySuccess, StarIcon} from '../..';
+import {HealthIcon, Modal, notifyError, notifySuccess, StarIcon} from '../../index';
 import {useActions} from '../../../redux/typeHooks/useActions';
 
 interface IMainContentTaskHabit {
 	text: string;
 	isBadTask: boolean;
 	id: number;
-	isSucsessTask: boolean;
-	isShow: boolean;
+	isSuccessTask: boolean;
 	count: number;
 	supText: string;
 	taskDiff: number;
@@ -21,8 +20,7 @@ export const HabitTask: React.FC<IMainContentTaskHabit> = ({
 	                                                           text,
 	                                                           isBadTask,
 	                                                           id,
-	                                                           isSucsessTask,
-	                                                           isShow,
+	                                                           isSuccessTask,
 	                                                           count,
 	                                                           supText,
 	                                                           taskDiff,
@@ -65,7 +63,7 @@ export const HabitTask: React.FC<IMainContentTaskHabit> = ({
 
 	//Редактирование сложности, описания, названия, смена таски(хорошая-плохая) в модальном окне
 	const onSendChangeHabit = (titleText: string, supText: string, diff: number) => {
-		setHabitChangeTask(id, isBadTaskModal, titleText, supText, diff, isBadTaskModal ? false : true);
+		setHabitChangeTask(id, isBadTaskModal, titleText, supText, diff, !isBadTaskModal);
 		setModalActive(false);
 	};
 
@@ -83,8 +81,7 @@ export const HabitTask: React.FC<IMainContentTaskHabit> = ({
 			<div
 				className={classNames('item-tasks__task', {
 					'item-tasks__bad-task': isBadTask,
-					'item-tasks__sucsess-task': isSucsessTask,
-					'item-tasks__show-task': isShow,
+					'item-tasks__sucsess-task': isSuccessTask,
 				})}>
 				<div
 					onClick={onClickSucsessTask(id, 10)}

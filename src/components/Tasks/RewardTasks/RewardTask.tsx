@@ -1,17 +1,15 @@
 import React, {useState} from 'react';
 
 import {toast} from 'react-toastify';
-import classNames from 'classnames';
 
 import {useActions} from '../../../redux/typeHooks/useActions';
 import {useTypedSelector} from '../../../redux/typeHooks/useTypedSelector';
-import {CoinIcon, Modal} from '../..';
+import {CoinIcon, Modal} from '../../index';
 
 interface IMainContentRewardTask {
 	titleText: string;
 	supText: string;
 	cost: number;
-	isShow: boolean;
 	id: number;
 }
 
@@ -19,7 +17,6 @@ export const RewardTask: React.FC<IMainContentRewardTask> = ({
 	                                                             titleText,
 	                                                             supText,
 	                                                             cost,
-	                                                             isShow,
 	                                                             id,
                                                              }) => {
 	const {money} = useTypedSelector((state) => state.user);
@@ -52,9 +49,7 @@ export const RewardTask: React.FC<IMainContentRewardTask> = ({
 	return (
 		<>
 			<div
-				className={classNames('item-tasks__task', {
-					'item-tasks__show-task': isShow,
-				})}>
+				className='item-tasks__task'>
 				<div className='item-tasks__middle'>
 					<div className='item-tasks__text-wrapper'>
 						<p className='item-tasks__text'>{titleText}</p>

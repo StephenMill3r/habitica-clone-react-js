@@ -1,20 +1,20 @@
-export type habitItemsType = {
+export type habitTaskType = {
     id: number;
     category: string;
     titleText: string;
-    isBadTask?: boolean;
-    isSuccessTask?: boolean;
-    count?: number;
-    supText?: string;
-    diff?: number;
+    isBadTask: boolean;
+    isSuccessTask: boolean;
+    count: number;
+    supText: string;
+    diff: number;
 };
 
 export interface habitState {
-    items: habitItemsType[];
+    habitTasks: habitTaskType[];
 }
 
 export enum habitActionsType {
-    SET_HABIT_ITEMS = 'SET_HABIT_ITEMS',
+    ADD_HABIT_TASK = 'ADD_HABIT_TASK',
     SET_HABIT_SUCCESS_TASK = 'SET_HABIT_SUCCESS_TASK',
     SET_PLUS_HABIT_COUNT = 'SET_PLUS_HABIT_COUNT',
     SET_MINUS_HABIT_COUNT = 'SET_MINUS_HABIT_COUNT',
@@ -23,8 +23,8 @@ export enum habitActionsType {
 }
 
 interface setHabitItemsType {
-    type: habitActionsType.SET_HABIT_ITEMS;
-    payload: habitItemsType;
+    type: habitActionsType.ADD_HABIT_TASK;
+    payload: habitTaskType;
 }
 
 interface setHabitSuccessTaskType {

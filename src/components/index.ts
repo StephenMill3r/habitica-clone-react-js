@@ -12,20 +12,20 @@ export {UserHealth} from './Harness/User/UserHealth';
 export {UserLevel} from './Harness/User/UserLevel';
 export {UserInfo} from './Harness/User/UserInfo';
 
-export {Tasks} from './MainContent/Tasks';
+export {Tasks} from './Tasks/Tasks';
 
-export {DailyTasks} from './MainContent/DailyTasks/DailyTasks';
-export {DailyTask} from './MainContent/DailyTasks/DailyTask';
+export {DailyTasks} from './Tasks/DailyTasks/DailyTasks';
+export {DailyTask} from './Tasks/DailyTasks/DailyTask';
 
-export {ToDoTasks} from './MainContent/ToDoTasks/ToDoTasks';
-export {ToDoTask} from './MainContent/ToDoTasks/ToDoTask';
+export {ToDoTasks} from './Tasks/ToDoTasks/ToDoTasks';
+export {ToDoTask} from './Tasks/ToDoTasks/ToDoTask';
 
-export {RewardTasks} from './MainContent/RewardTasks/RewardTasks';
-export {RewardTask} from './MainContent/RewardTasks/RewardTask';
-export {RewardThing} from './MainContent/RewardTasks/RewardThing';
+export {RewardTasks} from './Tasks/RewardTasks/RewardTasks';
+export {RewardTask} from './Tasks/RewardTasks/RewardTask';
+export {RewardThing} from './Tasks/RewardTasks/RewardThing';
 
-export {HabitTasks} from './MainContent/HabitTasks/HabitTasks';
-export {HabitTask} from './MainContent/HabitTasks/HabitTask';
+export {HabitTasks} from './Tasks/HabitTasks/HabitTasks';
+export {HabitTask} from './Tasks/HabitTasks/HabitTask';
 
 export {default as notifyError} from '../common/utils/notifyError';
 export {default as notifySuccess} from '../common/utils/notifySuccess';

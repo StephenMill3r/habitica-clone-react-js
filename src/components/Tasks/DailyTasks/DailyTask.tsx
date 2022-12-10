@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import {HealthIcon, notifyError, notifySuccess, StarIcon} from '../..';
+import {HealthIcon, notifyError, notifySuccess, StarIcon} from '../../index';
 import {useActions} from '../../../redux/typeHooks/useActions';
 
 interface IMainContentTaskDaily {
@@ -8,7 +8,6 @@ interface IMainContentTaskDaily {
 	supText: string;
 	id: number;
 	isCompletedTask: boolean;
-	isShow: boolean;
 	count: number;
 	exp: number;
 	health: number;
@@ -19,7 +18,6 @@ export const DailyTask: React.FC<IMainContentTaskDaily> = ({
 	                                                           supText,
 	                                                           id,
 	                                                           isCompletedTask,
-	                                                           isShow,
 	                                                           count,
 	                                                           health,
 	                                                           exp,
@@ -55,9 +53,7 @@ export const DailyTask: React.FC<IMainContentTaskDaily> = ({
 	return (
 		<div className='item-tasks__wrapper'>
 			<div
-				className={classNames('item-tasks__task', {
-					'item-tasks__show-task': isShow,
-				})}>
+				className={'item-tasks__task'}>
 				<div
 					className={classNames('item-tasks__left item-tasks__func', {
 						'item-tasks__left-active': isCompletedTask,

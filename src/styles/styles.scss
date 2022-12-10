@@ -385,7 +385,7 @@ body {
   }
 
   &__task {
-    display: none;
+    @include flexbox();
     width: 100%;
     margin-bottom: 2px;
     -webkit-box-shadow: 0 2px 2px 0 rgb(26 24 29 / 16%), 0 1px 4px 0 rgb(26 24 29 / 12%);
@@ -669,10 +669,6 @@ body {
     width: 15px;
     height: 15px;
   }
-}
-
-.item-tasks__show-task {
-  @include flexbox();
 }
 
 .modal {

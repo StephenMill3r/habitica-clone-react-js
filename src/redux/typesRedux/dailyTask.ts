@@ -1,37 +1,37 @@
-export type dailyItemsType = {
-  id?: number;
-  category: string;
-  titleText: string;
-  supText?: string;
-  isCompletedTask: boolean;
-  count: number;
-  exp: number;
-  health: number;
+export type dailyTaskType = {
+    id: number;
+    category: string;
+    titleText: string;
+    supText: string;
+    isCompletedTask: boolean;
+    count: number;
+    exp: number;
+    health: number;
 };
 
 export interface dailyState {
-  items: dailyItemsType[];
+    dailyTasks: dailyTaskType[];
 }
 
 export enum dailyActionsType {
-  SET_DAILY_ITEMS = 'SET_DAILY_ITEMS',
-  SET_DAILY_SUCCESS_TASK = 'SET_DAILY_SUCCESS_TASK',
-  SET_DAILY_DEFAULT_TASK = 'SET_DAILY_DEFAULT_TASK',
+    ADD_DAILY_TASK = 'ADD_DAILY_TASK',
+    SET_DAILY_SUCCESS_TASK = 'SET_DAILY_SUCCESS_TASK',
+    SET_DAILY_DEFAULT_TASK = 'SET_DAILY_DEFAULT_TASK',
 }
 
-interface setDailyItemsType {
-  type: dailyActionsType.SET_DAILY_ITEMS;
-  payload: any;
+interface addDailyTaskType {
+    type: dailyActionsType.ADD_DAILY_TASK;
+    payload: dailyTaskType;
 }
 
 interface setDailySuccessType {
-  type: dailyActionsType.SET_DAILY_SUCCESS_TASK;
-  payload: number;
+    type: dailyActionsType.SET_DAILY_SUCCESS_TASK;
+    payload: number;
 }
 
 interface setDailyDefaultType {
-  type: dailyActionsType.SET_DAILY_DEFAULT_TASK;
-  payload: number;
+    type: dailyActionsType.SET_DAILY_DEFAULT_TASK;
+    payload: number;
 }
 
-export type dailyActions = setDailyItemsType | setDailySuccessType | setDailyDefaultType;
+export type dailyActions = addDailyTaskType | setDailySuccessType | setDailyDefaultType;

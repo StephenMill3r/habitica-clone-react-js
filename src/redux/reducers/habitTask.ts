@@ -1,7 +1,7 @@
-import {habitActions, habitActionsType, habitState} from '../typesRedux/habitTask';
+import {habitActions, habitActionsType, habitState, habitTaskType} from '../typesRedux/habitTask';
 
 const initialState: habitState = {
-    items: [
+    habitTasks: [
         {
             id: 1,
             category: 'weak',
@@ -27,49 +27,53 @@ const initialState: habitState = {
 
 export const habitTask = (state = initialState, action: habitActions): habitState => {
     switch (action.type) {
-        case habitActionsType.SET_HABIT_ITEMS:
-            return {...state, items: [...state.items, action.payload]};
+        case habitActionsType.ADD_HABIT_TASK:
+            return {...state, habitTasks: [...state.habitTasks, action.payload]};
         case habitActionsType.SET_HABIT_SUCCESS_TASK:
             return {
                 ...state,
-                items: state.items.map((item: any) =>
-                    item.id === action.payload ? {...item, isSuccessTask: true, category: 'strong'} : item,
+                habitTasks: state.habitTasks.map((habitTask: habitTaskType) =>
+                    habitTask.id === action.payload ? {
+                        ...habitTask,
+                        isSuccessTask: true,
+                        category: 'strong'
+                    } : habitTask,
                 ),
             };
         case habitActionsType.SET_PLUS_HABIT_COUNT:
             return {
                 ...state,
-                items: state.items.map((item: any) =>
-                    item.id === action.payload ? {...item, count: item.count + 1} : item,
+                habitTasks: state.habitTasks.map((habitTask: habitTaskType) =>
+                    habitTask.id === action.payload ? {...habitTask, count: habitTask.count + 1} : habitTask,
                 ),
             };
         case habitActionsType.SET_MINUS_HABIT_COUNT:
             return {
                 ...state,
-                items: state.items.map((item: any) =>
-                    item.id === action.payload ? {...item, count: item.count - 1} : item,
+                habitTasks: state.habitTasks.map((habitTask: habitTaskType) =>
+                    habitTask.id === action.payload ? {...habitTask, count: habitTask.count - 1} : habitTask,
                 ),
             };
         case habitActionsType.SET_HABIT_CHANGE_TASK:
             return {
                 ...state,
-                items: state.items.map((item: any) =>
-                    item.id === action.id
+                habitTasks: state.habitTasks.map((habitTask: habitTaskType) =>
+                    habitTask.id === action.id
                         ? {
-                            ...item,
+                            ...habitTask,
                             titleText: action.titleText,
                             supText: action.supText,
                             isBadTask: action.isBadTask,
                             isSuccessTask: action.isSuccessTask,
                             diff: action.diff + 1,
                         }
-                        : item,
+                        : habitTask,
                 ),
             };
         case habitActionsType.SET_DELETE_HABIT_TASK:
             return {
                 ...state,
-                items: state.items.filter((item) => item.id !== action.payload),
+                habitTasks: state.habitTasks.filter((habitTask) => habitTask.id !== action.payload),
             };
         default:
             return state;

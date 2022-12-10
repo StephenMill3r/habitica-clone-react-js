@@ -3,16 +3,16 @@ import classNames from 'classnames';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-import {HealthIcon, Modal, notifySuccess, StarIcon} from '../..';
+import {HealthIcon, Modal, notifySuccess, StarIcon} from '../../index';
 import {useActions} from '../../../redux/typeHooks/useActions';
 import {diff} from '../HabitTasks/HabitTask';
+import {setDeleteToDoTask} from "../../../redux/actions/toDo";
 
 interface IToDoTask {
 	titleText: string;
 	supText: string;
 	id: number;
 	isCompletedTask: boolean;
-	isShow: boolean;
 	taskDiff: number;
 	calculatedDate: number;
 }
@@ -22,7 +22,6 @@ export const ToDoTask: React.FC<IToDoTask> = ({
 	                                              supText,
 	                                              id,
 	                                              isCompletedTask,
-	                                              isShow,
 	                                              taskDiff,
 	                                              calculatedDate,
                                               }) => {
@@ -30,10 +29,10 @@ export const ToDoTask: React.FC<IToDoTask> = ({
 		setUserLevel,
 		setUserHealth,
 		setUserMoney,
-		setGoalSuccessTask,
-		setGoalChangeTask,
-		setDeleteGoalTask,
-		setGoalChangeCategoryTask,
+		setToDoSuccessTask,
+		setToDoChangeTask,
+		setToDoChangeCategoryTask,
+		setDeleteToDoTask,
 	} = useActions();
 	const [modalActive, setModalActive] = useState<boolean>(false);
 	const [selectedDiff, setSelectedDiff] = useState<string>(diff[0]);
@@ -45,10 +44,10 @@ export const ToDoTask: React.FC<IToDoTask> = ({
 
 	//Редактирование сложности, описания, названия,даты до выполнения задания в модальном окне
 	const onSendChangeGoal = (titleText: string, supText: string, diff: number) => {
-		setGoalChangeTask(id, titleText, supText, diff, calculatedRemainDate);
+		setToDoChangeTask(id, titleText, supText, diff, calculatedRemainDate);
 
 		if (userDateToFinish) {
-			setGoalChangeCategoryTask(id, 'date');
+			setToDoChangeCategoryTask(id, 'date');
 		}
 		setModalActive(false);
 	};
@@ -57,7 +56,7 @@ export const ToDoTask: React.FC<IToDoTask> = ({
 	const onClickLevelUpdate =
 		(level: number, health: number) => (event: React.MouseEvent<HTMLElement>) => {
 			if (!isCompletedTask) {
-				setGoalSuccessTask(id);
+				setToDoSuccessTask(id);
 				setUserLevel(level * taskDiff);
 				setUserHealth(health * taskDiff);
 				setUserMoney(Math.floor(Math.random() * 10));
@@ -102,15 +101,13 @@ export const ToDoTask: React.FC<IToDoTask> = ({
 
 	//Удаление таски
 	const onClickDeleteTask = () => {
-		setDeleteGoalTask(id);
+		setDeleteToDoTask(id);
 		setModalActive(false);
 	};
+	
 	return (
 		<div className='item-tasks__wrapper'>
-			<div
-				className={classNames('item-tasks__task', {
-					'item-tasks__show-task': isShow,
-				})}>
+			<div className='item-tasks__task'>
 				<div
 					className={classNames('item-tasks__left item-tasks__func', {
 						'item-tasks__left-active': isCompletedTask,

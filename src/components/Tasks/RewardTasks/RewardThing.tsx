@@ -1,6 +1,6 @@
 import React from "react";
 
-import {CoinIcon, HealthIcon, notifySuccess} from '../..';
+import {CoinIcon, HealthIcon, notifySuccess} from '../../index';
 import {useActions} from '../../../redux/typeHooks/useActions';
 import {useTypedSelector} from '../../../redux/typeHooks/useTypedSelector';
 

@@ -1,6 +1,6 @@
 import React from "react";
 
-import {DailyTasks, HabitTasks, RewardTasks, ToDoTasks} from '..';
+import {DailyTasks, HabitTasks, RewardTasks, ToDoTasks} from '../index';
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
