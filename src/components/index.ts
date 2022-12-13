@@ -29,7 +29,7 @@ export {HabitTask} from './Tasks/HabitTasks/HabitTask';
 
 export {default as notifyError} from '../common/utils/notifyError';
 export {default as notifySuccess} from '../common/utils/notifySuccess';
-export {default as Tabs} from '../common/utils/Tabs';
+export {default as Tabs} from '../common/ui/Tabs';
 export {default as Modal} from '../common/ui/Modal';
 export {default as Burger} from '../common/ui/Burger/Burger';
 export {default as RightNav} from '../common/ui/Burger/RightNav';

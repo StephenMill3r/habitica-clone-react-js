@@ -26,6 +26,7 @@ export const RewardTasks: React.FC = () => {
 							titleText={rewardTask.titleText}
 							id={rewardTask.id}
 							cost={rewardTask.cost}
+							category={rewardTask.category}
 							supText={rewardTask.supText}
 						/>
 					))

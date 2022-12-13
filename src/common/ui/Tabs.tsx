@@ -2,16 +2,16 @@ import React from "react";
 
 import classNames from 'classnames';
 
-interface ITabs {
-	tabs: tabType[],
-	activeTab: number,
-	setActiveTab: any,
-}
-
 type tabType = {
 	category: string;
 	title: string;
 };
+
+interface ITabs {
+	tabs: tabType[],
+	activeTab: number,
+	setActiveTab: (index: number) => void,
+}
 
 const Tabs: React.FC<ITabs> = ({tabs, setActiveTab, activeTab}) => {
 

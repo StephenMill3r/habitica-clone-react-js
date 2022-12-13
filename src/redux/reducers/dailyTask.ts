@@ -1,4 +1,4 @@
-import {dailyActions, dailyActionsType, dailyState} from '../typesRedux/dailyTask';
+import {dailyActions, dailyActionsType, dailyState, dailyTaskType} from '../typesRedux/dailyTask';
 
 const initialState: dailyState = {
     dailyTasks: [
@@ -22,7 +22,7 @@ export const dailyTask = (state = initialState, action: dailyActions): dailyStat
         case dailyActionsType.SET_DAILY_SUCCESS_TASK:
             return {
                 ...state,
-                dailyTasks: state.dailyTasks.map((dailyTask: any) =>
+                dailyTasks: state.dailyTasks.map((dailyTask: dailyTaskType) =>
                     dailyTask.id === action.payload
                         ? {...dailyTask, isCompletedTask: true, category: 'other', count: dailyTask.count + 1}
                         : dailyTask,
@@ -31,7 +31,7 @@ export const dailyTask = (state = initialState, action: dailyActions): dailyStat
         case dailyActionsType.SET_DAILY_DEFAULT_TASK:
             return {
                 ...state,
-                dailyTasks: state.dailyTasks.map((dailyTask: any) =>
+                dailyTasks: state.dailyTasks.map((dailyTask: dailyTaskType) =>
                     dailyTask.id === action.payload
                         ? {...dailyTask, isCompletedTask: false, category: 'active', count: dailyTask.count - 1}
                         : dailyTask,

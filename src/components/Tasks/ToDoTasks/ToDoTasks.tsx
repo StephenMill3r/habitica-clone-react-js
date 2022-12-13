@@ -27,8 +27,9 @@ export const ToDoTasks: React.FC = () => {
 							id={toDoTask.id}
 							supText={toDoTask.supText}
 							isCompletedTask={toDoTask.isCompletedTask}
-							taskDiff={toDoTask.diff}
-							calculatedDate={toDoTask.remainDay}
+							diff={toDoTask.diff}
+							remainDay={toDoTask.remainDay}
+							category={toDoTask.category}
 						/>
 					))
 				}

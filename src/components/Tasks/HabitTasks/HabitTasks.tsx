@@ -23,13 +23,14 @@ export const HabitTasks: React.FC = () => {
 					filteredHabitTasks.map((habitTask: habitTaskType) => (
 						<HabitTask
 							key={habitTask.id}
-							text={habitTask.titleText}
+							titleText={habitTask.titleText}
 							isBadTask={habitTask.isBadTask}
 							id={habitTask.id}
 							isSuccessTask={habitTask.isSuccessTask}
 							count={habitTask.count}
 							supText={habitTask.supText}
-							taskDiff={habitTask.diff}
+							diff={habitTask.diff}
+							category={habitTask.category}
 						/>
 					))
 				}
