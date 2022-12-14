@@ -1,6 +1,6 @@
 import React from "react";
 
-import {HabitTasks, RewardTasks, ToDoTasks} from '../index';
+import {DailyTasks, HabitTasks, RewardTasks, ToDoTasks} from '../index';
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -12,7 +12,7 @@ export const Tasks: React.FC = () => {
 				<div className='tasks__top'/>
 				<div className='tasks__row'>
 					<HabitTasks/>
-					{/*<DailyTasks/>*/}
+					<DailyTasks/>
 					<ToDoTasks/>
 					<RewardTasks/>
 					<ToastContainer/>

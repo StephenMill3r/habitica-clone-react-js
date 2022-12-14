@@ -1,9 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
 import 'react-datepicker/dist/react-datepicker.css';
-
-import {HealthIcon, notifySuccess, StarIcon} from '../../index';
-import {useActions} from '../../../redux/typeHooks/useActions';
 import {declinationOfNumber} from "../../../common/utils/declinationOfNumber";
 import {CheckIcon} from "../../../assets/icons/CheckIcon";
 import {ThreeDots} from "../../../assets/icons/ThreeDots";
@@ -11,6 +8,7 @@ import {CalendarIcon} from "../../../assets/icons/CalendarIcon";
 import {useModal} from "../../../hooks/useModal";
 import {UpdateToDoTaskModal} from "../../Modal/UpdateToDoTaskModal";
 import {toDoTaskType} from "../../../redux/typesRedux/toDo";
+import {useTasks} from "../../../hooks/useTasks";
 
 export const ToDoTask: React.FC<toDoTaskType> = ({
 	                                                 titleText,
@@ -21,24 +19,12 @@ export const ToDoTask: React.FC<toDoTaskType> = ({
 	                                                 remainDay,
 	                                                 category
                                                  }) => {
-	const {
-		setUserLevel,
-		setUserHealth,
-		setUserMoney,
-		setToDoSuccessTask,
-	} = useActions();
-
 	const {toggle, isShown} = useModal()
+	const {toDoTaskComplete} = useTasks()
 
-	//Дает опыт, жизни, монеты, если таска выполнена
 	const onClickLevelUpdate = (level: number, health: number) => () => {
 		if (!isCompletedTask) {
-			setToDoSuccessTask(id);
-			setUserLevel(level * diff);
-			setUserHealth(health * diff);
-			setUserMoney(Math.floor(Math.random() * 10));
-			notifySuccess('опыта', level * diff, <StarIcon/>);
-			notifySuccess('жизни', health * diff, <HealthIcon/>);
+			toDoTaskComplete(id, level, health)
 		}
 	};
 

@@ -3,7 +3,8 @@ import {Modal} from "./Modal";
 import {useActions} from "../../redux/typeHooks/useActions";
 import DatePicker from "react-datepicker";
 import {toDoTaskType} from "../../redux/typesRedux/toDo";
-import {diff} from "../Tasks/HabitTasks/HabitTask";
+import {diffList} from "../Tasks/taskDifficulty";
+import {useFormik} from "formik";
 
 interface IUpdateToDoTaskModal {
 	isShown: boolean,
@@ -11,24 +12,49 @@ interface IUpdateToDoTaskModal {
 	taskData: toDoTaskType
 }
 
+
 export const UpdateToDoTaskModal: FunctionComponent<IUpdateToDoTaskModal> = ({isShown, toggle, taskData}) => {
-	const {id, titleText, supText, remainDay, diff: indexDiff} = taskData
-
-	const [taskTitle, setTaskTitle] = useState<string>(titleText);
-	const [taskText, setTaskText] = useState<string>(supText);
-
-	const [selectedDiff, setSelectedDiff] = useState<string>(diff[indexDiff]);
-	const [userDateToFinish, setUserDateToFinish] = useState<Date>();
-	const [calculatedRemainDate, setCalculatedRemainDate] = useState<number>(remainDay);
-
+	const {id, titleText, supText, remainDay, diff: indexDiff, isCompletedTask, category} = taskData
 	const {setDeleteToDoTask, setToDoChangeCategoryTask, setToDoChangeTask} = useActions();
+	const [userDateToFinish, setUserDateToFinish] = useState<Date>();
 
+	const initialValues: toDoTaskType = {
+		id,
+		titleText,
+		supText,
+		diff: indexDiff,
+		remainDay,
+		isCompletedTask,
+		category,
+	}
+
+	const formik = useFormik({
+		initialValues: initialValues,
+		onSubmit: values => {
+			let createData = {
+				id: values.id,
+				titleText: values.titleText,
+				supText: values.supText,
+				diff: diffList.indexOf(diffList[values.diff]),
+				remainDay: values.remainDay,
+				isCompletedTask: true,
+				category: ''
+			};
+
+			setToDoChangeTask(createData);
+			if (userDateToFinish) {
+				setToDoChangeCategoryTask(id, 'date');
+			}
+			toggle();
+		}
+	})
+	
 	const handleDateChange = (newDate: Date) => {
 		const calculatedRemainDay = Math.ceil(
 			(newDate.getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24),
 		);
 		setUserDateToFinish(newDate);
-		setCalculatedRemainDate(calculatedRemainDay);
+		formik.setFieldValue('remainDay', calculatedRemainDay);
 	};
 
 	const onClickDeleteTask = () => {
@@ -36,19 +62,11 @@ export const UpdateToDoTaskModal: FunctionComponent<IUpdateToDoTaskModal> = ({is
 		toggle();
 	};
 
-	const handleSubmit = (titleText: string, supText: string, diff: number) => {
-		setToDoChangeTask(id, titleText, supText, diff, calculatedRemainDate);
-		if (userDateToFinish) {
-			setToDoChangeCategoryTask(id, 'date');
-		}
-		toggle();
-	};
-
 	return (
 		<Modal
 			isShown={isShown}
 			handleClose={toggle}
-			handleSubmit={() => handleSubmit(taskTitle, taskText, diff.indexOf(selectedDiff))}
+			handleSubmit={formik.handleSubmit}
 			headerText={'Изменить задачу'}
 			headerContent={
 				<>
@@ -56,16 +74,16 @@ export const UpdateToDoTaskModal: FunctionComponent<IUpdateToDoTaskModal> = ({is
 						<label>Заголовок*</label>
 						<input
 							placeholder='Добавить название'
-							value={taskTitle}
-							onChange={(e) => setTaskTitle(e.target.value)}
+							value={formik.values.titleText}
+							onChange={(e) => formik.setFieldValue('titleText', e.target.value)}
 							type='text'
 						/>
 					</div>
 					<div className='modal__notice'>
 						<label>Заметки</label>
 						<textarea
-							value={taskText}
-							onChange={(e) => setTaskText(e.target.value)}
+							value={formik.values.supText}
+							onChange={(e) => formik.setFieldValue('supText', e.target.value)}
 						/>
 					</div>
 				</>
@@ -75,11 +93,11 @@ export const UpdateToDoTaskModal: FunctionComponent<IUpdateToDoTaskModal> = ({is
 					<div className='modal__title-select'>Сложность</div>
 					<select
 						className='modal__select'
-						value={selectedDiff}
-						onChange={(e) => setSelectedDiff(e.target.value)}>
-						{diff.map((item: string) => (
-							<option key={item} value={item}>
-								{item}
+						value={diffList[formik.values.diff]}
+						onChange={(e) => formik.setFieldValue('diff', e.target.value)}>
+						{diffList.map((difficulty: string) => (
+							<option key={difficulty} value={difficulty}>
+								{difficulty}
 							</option>
 						))}
 					</select>

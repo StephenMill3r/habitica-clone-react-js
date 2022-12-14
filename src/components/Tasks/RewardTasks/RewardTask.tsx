@@ -1,7 +1,5 @@
 import React from 'react';
 
-import {toast} from 'react-toastify';
-
 import {useActions} from '../../../redux/typeHooks/useActions';
 import {useTypedSelector} from '../../../redux/typeHooks/useTypedSelector';
 import {CoinIcon} from '../../index';
@@ -9,6 +7,7 @@ import {ThreeDots} from "../../../assets/icons/ThreeDots";
 import {useModal} from "../../../hooks/useModal";
 import {rewardTaskType} from "../../../redux/typesRedux/reward";
 import {UpdateRewardTaskModal} from "../../Modal/UpdateRewardTaskModal";
+import {useNotification} from "../../../hooks/useNotification";
 
 export const RewardTask: React.FC<rewardTaskType> = ({
 	                                                     titleText,
@@ -18,16 +17,16 @@ export const RewardTask: React.FC<rewardTaskType> = ({
 	                                                     category
                                                      }) => {
 	const {money} = useTypedSelector((state) => state.user);
+
 	const {setMinusUserMoney} = useActions();
 	const {toggle, isShown} = useModal()
-
-	const notifyLevel = () => toast.error(<div>У вас не хватает монет</div>);
+	const {showErrorNotification} = useNotification()
 
 	const onClickSpendMoney = () => {
 		if (money >= cost) {
 			setMinusUserMoney(cost);
 		} else {
-			notifyLevel();
+			showErrorNotification(<div>У вас не хватает монет</div>)
 		}
 	};
 

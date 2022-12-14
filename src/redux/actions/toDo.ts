@@ -10,20 +10,14 @@ export const setToDoSuccessTask = (payload: number): toDoActions => {
     return {type: toDoActionsType.SET_TODO_SUCCESS_TASK, payload};
 };
 
-export const setToDoChangeTask = (
-    id: number,
-    titleText: string,
-    supText: string,
-    diff: number,
-    remainDay: number,
-): toDoActions => {
+export const setToDoChangeTask = (taskData: toDoTaskType): toDoActions => {
     return {
         type: toDoActionsType.SET_TODO_CHANGE_TASK,
-        id,
-        titleText,
-        supText,
-        diff,
-        remainDay,
+        id: taskData.id,
+        titleText: taskData.titleText,
+        supText: taskData.supText,
+        diff: taskData.diff,
+        remainDay: taskData.remainDay,
     };
 };
 

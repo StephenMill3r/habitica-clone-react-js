@@ -18,22 +18,15 @@ export const setMinusHabitCount = (payload: number): habitActions => {
     return {type: habitActionsType.SET_MINUS_HABIT_COUNT, payload};
 };
 
-export const setHabitChangeTask = (
-    id: number,
-    isBadTask: boolean,
-    titleText: string,
-    supText: string,
-    diff: number,
-    isSuccessTask: boolean,
-): habitActions => {
+export const setHabitChangeTask = (taskData: habitTaskType): habitActions => {
     return {
         type: habitActionsType.SET_HABIT_CHANGE_TASK,
-        isBadTask,
-        id,
-        titleText,
-        supText,
-        diff,
-        isSuccessTask,
+        isBadTask: taskData.isBadTask,
+        id: taskData.id,
+        titleText: taskData.titleText,
+        supText: taskData.supText,
+        diff: taskData.diff,
+        isSuccessTask: taskData.isSuccessTask,
     };
 };
 

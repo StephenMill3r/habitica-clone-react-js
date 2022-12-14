@@ -1,53 +1,28 @@
 import React from 'react';
 import classNames from 'classnames';
-import {HealthIcon, notifyError, notifySuccess, StarIcon} from '../../index';
-import {useActions} from '../../../redux/typeHooks/useActions';
 import {CounterIcon} from "../../../assets/icons/CounterIcon";
 import {CheckIcon} from "../../../assets/icons/CheckIcon";
+import {useTasks} from "../../../hooks/useTasks";
+import {dailyTaskType} from "../../../redux/typesRedux/dailyTask";
 
-interface IMainContentTaskDaily {
-	titleText: string;
-	supText: string;
-	id: number;
-	isCompletedTask: boolean;
-	count: number;
-	exp: number;
-	health: number;
-}
 
-export const DailyTask: React.FC<IMainContentTaskDaily> = ({
-	                                                           titleText,
-	                                                           supText,
-	                                                           id,
-	                                                           isCompletedTask,
-	                                                           count,
-	                                                           health,
-	                                                           exp,
-                                                           }) => {
-	const {
-		setUserLevel,
-		setMinusUserLevel,
-		setUserHealth,
-		setMinusUserHealth,
-		setUserMoney,
-		setDailySuccessTask,
-		setDailyDefaultTask,
-	} = useActions();
+export const DailyTask: React.FC<dailyTaskType> = ({
+	                                                   titleText,
+	                                                   supText,
+	                                                   id,
+	                                                   isCompletedTask,
+	                                                   count,
+	                                                   health,
+	                                                   exp,
+                                                   }) => {
+
+	const {dailyTaskComplete, dailyTaskFail} = useTasks()
 
 	const onCheckBoxClick = (level: number, health: number) => () => {
 		if (isCompletedTask) {
-			setMinusUserLevel(level);
-			setMinusUserHealth(health);
-			setDailyDefaultTask(id);
-			notifyError('жизни', health, <HealthIcon/>);
-			notifyError('опыта', level, <StarIcon/>);
+			dailyTaskFail(id, level, health)
 		} else {
-			setDailySuccessTask(id);
-			setUserLevel(level);
-			setUserHealth(health);
-			setUserMoney(Math.floor(Math.random() * 10));
-			notifySuccess('опыта', level, <StarIcon/>);
-			notifySuccess('жизни', health, <HealthIcon/>);
+			dailyTaskComplete(id, level, health)
 		}
 	};
 
