@@ -5,8 +5,8 @@ import {
 	setHabitSuccessTask,
 	setMinusHabitCount,
 	setPlusHabitCount,
-} from '../../actions/habitTask';
-import {habitTask} from '../habitTask';
+} from '../../../entities/habitTask/model/actions/habitTask';
+import {habitTask} from '../../../entities/habitTask/model/reducers/habitTask';
 
 let initialState = {
 	items: [

@@ -1,13 +1,13 @@
 import React from 'react';
-import { NavSite } from '../../../components';
+import {NavSite} from '../../../shared/components';
 
 interface IRightNav {
-  open: boolean;
-  burgerRef: any;
+	open: boolean;
+	burgerRef: any;
 }
 
-const RightNav: React.FC<IRightNav> = ({ open }) => {
-  return <NavSite open={open} />;
+const RightNav: React.FC<IRightNav> = ({open}) => {
+	return <NavSite open={open}/>;
 };
 
 export default RightNav;
