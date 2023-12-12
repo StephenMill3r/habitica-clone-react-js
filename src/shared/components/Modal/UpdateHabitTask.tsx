@@ -2,9 +2,9 @@ import React, {FunctionComponent} from 'react';
 import {Modal} from "./Modal";
 import {useActions} from "../../../app/store/typeHooks/useActions";
 import classNames from "classnames";
-import {habitTaskType} from "../../../entities/habitTask/model/types/habitTask";
 import {diffList} from "../Tasks/taskDifficulty";
 import {useFormik} from "formik";
+import {habitTaskType} from "entities/habitTask/model";
 
 interface IUpdateToDoTaskModal {
 	isShown: boolean,

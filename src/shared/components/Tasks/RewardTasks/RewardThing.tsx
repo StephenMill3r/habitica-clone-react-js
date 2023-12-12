@@ -1,10 +1,6 @@
 import React from "react";
 
-import {CoinIcon, HealthIcon} from '../../index';
-import {useActions} from '../../../../app/store/typeHooks/useActions';
-import {useTypedSelector} from '../../../../app/store/typeHooks/useTypedSelector';
-import {useNotification} from "../../../hooks/useNotification";
-import {MessageOnGain} from "../../../../common/ui/MessageOnGain";
+import {CoinIcon} from '../../index';
 
 interface IRewardItem {
 	price: number;
@@ -19,25 +15,7 @@ export const RewardThing: React.FC<IRewardItem> = ({
 	                                                   category,
 	                                                   img,
                                                    }) => {
-	const {money} = useTypedSelector((state) => state.user);
-	const {setMinusUserMoney, setUserHealth, setUserThing} = useActions();
-	const {showErrorNotification, showSuccessNotification} = useNotification()
 
-	const onClickItem = (price: number) => () => {
-		if (money >= price) {
-			setMinusUserMoney(price);
-			if (category === 'Health flask') {
-				setUserHealth(25);
-				showSuccessNotification(<MessageOnGain thing={['жизнь', 'жизни', 'жизней']} icon={<HealthIcon/>} count={25}/>)
-			}
-			if (category === 'Thing') {
-				setUserThing({category, name, price, img});
-				showSuccessNotification(<div>Покупка успешна совершена, проверьте инвентарь</div>)
-			}
-		} else {
-			showErrorNotification(<div>У вас не хватает монет</div>)
-		}
-	};
 
 	return (
 		<div className='shop-tasks__column'>

@@ -1,5 +1,4 @@
-import {habitState} from '../types/habitTask';
-import {HabitCategoryEnum} from "../config";
+import {HabitCategoryEnum, habitState} from "../config";
 import {createReducer} from "@reduxjs/toolkit";
 import {HabitTaskActions} from "../actions";
 
@@ -35,58 +34,50 @@ export const habitTask = createReducer(initialState, (builder) => builder
     .addCase(HabitTaskActions.addHabitTask, (state, {payload: {newHabit}}) => ({
         ...state,
         habitTasks: [...state.habitTasks, newHabit],
-    })));
-
-//
-// export const habitTask = (state = initialState, action: habitActions): habitState => {
-//     switch (action.type) {
-//         case habitActionsType.SET_HABIT_SUCCESS_TASK:
-//             return {
-//                 ...state,
-//                 habitTasks: state.habitTasks.map((habitTask: habitTaskType) =>
-//                     habitTask.id === action.payload ? {
-//                         ...habitTask,
-//                         isSuccessTask: true,
-//                         category: habitCategoryEnum.STRONG
-//                     } : habitTask,
-//                 ),
-//             };
-//         case habitActionsType.SET_PLUS_HABIT_COUNT:
-//             return {
-//                 ...state,
-//                 habitTasks: state.habitTasks.map((habitTask: habitTaskType) =>
-//                     habitTask.id === action.payload ? {...habitTask, count: habitTask.count + 1} : habitTask,
-//                 ),
-//             };
-//         case habitActionsType.SET_MINUS_HABIT_COUNT:
-//             return {
-//                 ...state,
-//                 habitTasks: state.habitTasks.map((habitTask: habitTaskType) =>
-//                     habitTask.id === action.payload ? {...habitTask, count: habitTask.count - 1} : habitTask,
-//                 ),
-//             };
-//         case habitActionsType.SET_HABIT_CHANGE_TASK:
-//             return {
-//                 ...state,
-//                 habitTasks: state.habitTasks.map((habitTask: habitTaskType) =>
-//                     habitTask.id === action.id
-//                         ? {
-//                             ...habitTask,
-//                             titleText: action.titleText,
-//                             supText: action.supText,
-//                             isBadTask: action.isBadTask,
-//                             isSuccessTask: action.isSuccessTask,
-//                             diff: action.diff + 1,
-//                         }
-//                         : habitTask,
-//                 ),
-//             };
-//         case habitActionsType.SET_DELETE_HABIT_TASK:
-//             return {
-//                 ...state,
-//                 habitTasks: state.habitTasks.filter((habitTask) => habitTask.id !== action.payload),
-//             };
-//         default:
-//             return state;
-//     }
-// };
+    }))
+    .addCase(HabitTaskActions.successHabitTask, (state, {payload: {taskId}}) => ({
+        ...state,
+        habitTasks: state.habitTasks.map((habitTask) =>
+            habitTask.id === taskId ? {
+                ...habitTask,
+                isSuccessTask: true,
+                category: HabitCategoryEnum.STRONG
+            } : habitTask,
+        ),
+    }))
+    .addCase(HabitTaskActions.plusHabitCount, (state, {payload: {taskId}}) => ({
+        ...state,
+        habitTasks: state.habitTasks.map((habitTask) =>
+            habitTask.id === taskId ? {...habitTask, count: habitTask.count + 1} : habitTask,
+        ),
+    }))
+    .addCase(HabitTaskActions.minusHabitCount, (state, {payload: {taskId}}) => ({
+        ...state,
+        habitTasks: state.habitTasks.map((habitTask) =>
+            habitTask.id === taskId ? {...habitTask, count: habitTask.count - 1} : habitTask,
+        ),
+    }))
+    .addCase(HabitTaskActions.changeHabitTask, (state, {payload: {newHabit}}) => ({
+        ...state,
+        habitTasks: state.habitTasks.map((habitTask) =>
+            habitTask.id === newHabit.id
+                ? {
+                    ...habitTask,
+                    titleText: newHabit.titleText,
+                    supText: newHabit.supText,
+                    isBadTask: newHabit.isBadTask,
+                    isSuccessTask: newHabit.isSuccessTask,
+                    diff: newHabit.diff + 1,
+                }
+                : habitTask,
+        ),
+    }))
+    .addCase(HabitTaskActions.deleteHabitTask, (state, {payload: {taskId}}) => ({
+        ...state,
+        habitTasks: state.habitTasks.filter((habitTask) => habitTask.id !== taskId)
+    }))
+    .addCase(HabitTaskActions.changeCurrentHabitFilter, (state, {payload: {newFilter}}) => ({
+        ...state,
+        currentFilter: newFilter
+    }))
+);

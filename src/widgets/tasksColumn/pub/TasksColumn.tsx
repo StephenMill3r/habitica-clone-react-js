@@ -7,7 +7,7 @@ interface ITasksColumnProps {
 	tasksColumnName: string
 	addTask: { placeHolder: string, handler: (text: string) => void },
 	tasks: TaskType[],
-	taskFilters: TaskFiltersType,
+	taskFilters: { filters: TaskFiltersType, handler: (newFilter: string) => void },
 	currentFilter: string,
 	additionalContent?: React.ReactNode,
 	taskComponent: (taskData: TaskType) => React.ReactNode,
@@ -23,7 +23,8 @@ export const TasksColumn: FunctionComponent<ITasksColumnProps> = ({
 	                                                                  additionalContent
                                                                   }) => {
 
-	const filteredTasks = useMemo(() => tasks.filter((task) => task.category === currentFilter), [])
+	const filteredTasks = useMemo(() => tasks.filter((task) => currentFilter === 'ALL' ? task :
+		task.category === currentFilter), [tasks, currentFilter])
 
 	return (
 		<div className='tasks__column'>

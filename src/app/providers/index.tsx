@@ -1,5 +1,6 @@
 import compose from "compose-function";
 import {withRouter} from "./withRouter";
-import {withRedux} from "./withRedux";
+import {withStore} from "./withStore";
+import {withHarness} from "./withHarness";
 
-export const withProviders = compose(withRouter, withRedux);
+export const withProviders = compose(withRouter, withStore, withHarness);

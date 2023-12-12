@@ -1,6 +1,7 @@
 {
   "name": "habitca",
   "version": "0.1.0",
+  "baseUrl": "./src",
   "private": true,
   "dependencies": {
     "@loadable/component": "^5.15.3",

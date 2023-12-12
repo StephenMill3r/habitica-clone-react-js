@@ -22,3 +22,21 @@ export const habitFilters: TaskFiltersType = [
         category: HabitCategoryEnum.STRONG,
     }
 ]
+
+
+export type habitTaskType = {
+    id: number;
+    category: HabitCategoryEnum;
+    titleText: string;
+    isBadTask: boolean;
+    isSuccessTask: boolean;
+    count: number;
+    supText: string;
+    diff: number;
+};
+
+export interface habitState {
+    habitTasks: habitTaskType[];
+    currentFilter: string,
+}
+
