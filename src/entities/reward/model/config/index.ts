@@ -1,12 +1,8 @@
-import {TaskFiltersType} from "shared/types/task";
+import {TaskFiltersType, TaskType} from "shared/types/task";
 
-export type RewardType = {
-    id: number;
-    titleText: string;
-    supText: string;
-    cost?: number;
-    category: string;
-};
+export const DEFAULT_REWARD_COST = 10
+
+export type RewardType = Required<Pick<TaskType, 'id' | 'titleText' | 'supText' | 'cost' | 'category'>> & TaskType
 
 export interface rewardState {
     rewards: RewardType[];

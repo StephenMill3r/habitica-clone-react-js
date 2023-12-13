@@ -36,7 +36,7 @@ export const TasksColumn: FunctionComponent<ITasksColumnProps> = ({
 				<div className='item-tasks__wrapper'>
 					<AddTaskForm addTask={addTask}/>
 					{
-						filteredTasks.map((habitTask) => taskComponent(habitTask))
+						filteredTasks.map((filteredTask) => taskComponent(filteredTask))
 					}
 					{additionalContent && additionalContent}
 				</div>

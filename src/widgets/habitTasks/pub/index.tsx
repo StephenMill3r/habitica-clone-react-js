@@ -48,12 +48,12 @@ export const HabitTasks: React.FC = () => {
 			taskComponent={(habitTask) => <HabitTask
 				key={habitTask.id}
 				titleText={habitTask.titleText}
-				isBadTask={habitTask.isBadTask}
+				isBadTask={habitTask.isBadTask ?? false}
 				id={habitTask.id}
-				isSuccessTask={habitTask.isSuccessTask}
-				count={habitTask.count}
+				isSuccessTask={habitTask.isSuccessTask ?? false}
+				count={habitTask.count ?? 0}
 				supText={habitTask.supText}
-				diff={habitTask.diff}
+				diff={habitTask.diff ?? 1}
 				category={habitTask.category}
 			/>}
 

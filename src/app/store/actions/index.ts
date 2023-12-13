@@ -2,15 +2,15 @@
 import * as userActionCreators from '../../../entities/user/model/actions/user';
 import * as habitTaskActionCreators from '../../../entities/habitTask/model/actions/habitTask';
 import * as rewardActionCreators from '../../../entities/reward/model/actions/reward';
-import * as dailyTaskActionCreators from '../../../redux/actions/dailyTask';
-import * as goalTaskActionCreators from '../../../redux/actions/toDo';
+import * as dailyTaskActionCreators from '../../../entities/dailyTask/model/actions/dailyTask';
+import * as todoTaskActionCreators from '../../../entities/todoTask/model/actions/todoTask';
 import * as userThingActionCreators from '../../../redux/actions/userThing';
 
 export default {
     ...userActionCreators,
     ...habitTaskActionCreators,
     ...dailyTaskActionCreators,
-    ...goalTaskActionCreators,
+    ...todoTaskActionCreators,
     ...rewardActionCreators,
     ...userThingActionCreators,
 };

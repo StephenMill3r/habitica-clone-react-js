@@ -1,7 +1,7 @@
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {TasksColumn} from "../../tasksColumn";
-import {RewardCategoryEnum, rewardFilters} from "../../../entities/reward/model/config";
+import {DEFAULT_REWARD_COST, RewardCategoryEnum, rewardFilters} from "../../../entities/reward/model/config";
 import {RewardActions} from "../../../entities/reward/model/actions";
 import {RewardSelectors} from "../../../entities/reward/model/selectors";
 import {Reward} from "../../../entities/reward";
@@ -47,7 +47,7 @@ export const Rewards: React.FC = () => {
 				key={rewardTask.id}
 				titleText={rewardTask.titleText}
 				id={rewardTask.id}
-				cost={rewardTask.cost}
+				cost={rewardTask.cost ?? DEFAULT_REWARD_COST}
 				category={rewardTask.category}
 				supText={rewardTask.supText}
 			/>}

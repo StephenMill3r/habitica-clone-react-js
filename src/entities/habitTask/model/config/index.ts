@@ -1,6 +1,8 @@
 import {TaskFiltersType, TaskType} from "shared/types/task";
 
-export type HabitTaskType = Pick<TaskType, 'titleText' | 'isBadTask' | 'id' | 'isSuccessTask' | 'count' | 'supText' | 'diff' | 'category'>;
+export type HabitTaskType =
+    Required<Pick<TaskType, 'titleText' | 'isBadTask' | 'id' | 'isSuccessTask' | 'count' | 'supText' | 'diff' | 'category'>>
+    & TaskType;
 
 export enum HabitCategoryEnum {
     ALL = 'ALL',
@@ -23,20 +25,8 @@ export const habitFilters: TaskFiltersType = [
     }
 ]
 
-
-export type habitTaskType = {
-    id: number;
-    category: HabitCategoryEnum;
-    titleText: string;
-    isBadTask: boolean;
-    isSuccessTask: boolean;
-    count: number;
-    supText: string;
-    diff: number;
-};
-
 export interface habitState {
-    habitTasks: habitTaskType[];
+    habitTasks: HabitTaskType[];
     currentFilter: string,
 }
 

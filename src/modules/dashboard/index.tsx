@@ -1,6 +1,8 @@
 import React from "react";
 import {HabitTasks} from "widgets/habitTasks";
 import {Rewards} from "widgets/rewards";
+import {DailyTasks} from "widgets/dailyTasks";
+import {TodoTasks} from "widgets/todoTasks";
 
 const Dashboard = () => {
 	return (
@@ -9,8 +11,8 @@ const Dashboard = () => {
 				<div className='tasks__top'/>
 				<div className='tasks__row'>
 					<HabitTasks/>
-					{/*<DailyTasks/>*/}
-					{/*<ToDoTasks/>*/}
+					<DailyTasks/>
+					<TodoTasks/>
 					<Rewards/>
 					{/*<ToastContainer/>*/}
 				</div>

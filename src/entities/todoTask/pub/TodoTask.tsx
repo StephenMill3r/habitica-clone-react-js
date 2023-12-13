@@ -1,16 +1,13 @@
 import React from 'react';
 import classNames from 'classnames';
 import 'react-datepicker/dist/react-datepicker.css';
-import {declinationOfNumber} from "../../../../common/utils/declinationOfNumber";
-import {CheckIcon} from "../../../../assets/icons/CheckIcon";
-import {ThreeDots} from "../../../../assets/icons/ThreeDots";
-import {CalendarIcon} from "../../../../assets/icons/CalendarIcon";
-import {useModal} from "../../../hooks/useModal";
-import {UpdateToDoTaskModal} from "../../Modal/UpdateToDoTaskModal";
-import {toDoTaskType} from "../../../../redux/typesRedux/toDo";
-import {useTasks} from "../../../hooks/useTasks";
+import {ToDoTaskType} from "../model/config";
+import {CheckIcon} from "../../../assets/icons/CheckIcon";
+import {CalendarIcon} from "../../../assets/icons/CalendarIcon";
+import {declinationOfNumber} from "../../../common/utils/declinationOfNumber";
+import {useTodoTask} from "../hooks/useTodoTask";
 
-export const ToDoTask: React.FC<toDoTaskType> = ({
+export const TodoTask: React.FC<ToDoTaskType> = ({
 	                                                 titleText,
 	                                                 supText,
 	                                                 id,
@@ -19,12 +16,12 @@ export const ToDoTask: React.FC<toDoTaskType> = ({
 	                                                 remainDay,
 	                                                 category
                                                  }) => {
-	const {toggle, isShown} = useModal()
-	const {toDoTaskComplete} = useTasks()
+	// const {toggle, isShown} = useModal()
+	const {todoTaskComplete} = useTodoTask()
 
 	const onClickLevelUpdate = (level: number, health: number) => () => {
 		if (!isCompletedTask) {
-			toDoTaskComplete(id, level, health)
+			todoTaskComplete(id, level, health)
 		}
 	};
 
@@ -44,7 +41,7 @@ export const ToDoTask: React.FC<toDoTaskType> = ({
 				<div className='item-tasks__middle'>
 					<div className='item-tasks__text-wrapper'>
 						<p className='item-tasks__text'>{titleText}</p>
-						<div onClick={toggle}><ThreeDots/></div>
+						{/*<div onClick={toggle}><ThreeDots/></div>*/}
 					</div>
 					<p className='item-tasks__suptext'>{supText}</p>
 					{remainDay !== 0 && (
@@ -56,11 +53,11 @@ export const ToDoTask: React.FC<toDoTaskType> = ({
 					)}
 				</div>
 			</div>
-			<UpdateToDoTaskModal
-				isShown={isShown}
-				toggle={toggle}
-				taskData={{titleText, category, supText, id, isCompletedTask, remainDay, diff}}
-			/>
+			{/*<UpdateToDoTaskModal*/}
+			{/*	isShown={isShown}*/}
+			{/*	toggle={toggle}*/}
+			{/*	taskData={{titleText, category, supText, id, isCompletedTask, remainDay, diff}}*/}
+			{/*/>*/}
 
 		</div>
 	);
