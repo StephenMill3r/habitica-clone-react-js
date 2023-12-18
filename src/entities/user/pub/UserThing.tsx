@@ -1,11 +1,11 @@
 import React from 'react';
 
-interface IInvetoryThing {
+interface IUserThing {
 	img: string;
 	name: string;
 }
 
-export const InventoryThing: React.FC<IInvetoryThing> = ({img, name}) => {
+export const UserThing: React.FC<IUserThing> = ({img, name}) => {
 
 	return (
 		<div className='inventory__column'>

@@ -1,6 +1,6 @@
 import React, {FunctionComponent} from 'react';
-import {BuyRewardItemBox} from "../../../features/buyRewardItem";
-import {shopThings} from "../../../features/buyRewardItem/model/config";
+import {shopThings} from "../model/config";
+import {BuyRewardItemBox} from "../ui";
 
 
 export const RewardShop: FunctionComponent = () => {

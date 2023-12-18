@@ -30,6 +30,6 @@ export const router: RouterType[] = [
 	{
 		title: RoutesLabelEnum.Inventory,
 		path: RoutesLinkEnum.Inventory,
-		children: <>123</>
+		children: <InventoryPage/>
 	},
 ];

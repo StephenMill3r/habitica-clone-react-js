@@ -1,7 +1,7 @@
 import React from 'react';
-import {useTasks} from "../../task/hooks/useTasks";
 import {useDispatch} from "react-redux";
 import {DailyTaskActions} from "../model/actions";
+import {useTasks} from "../../../entities/task/hooks/useTasks";
 
 
 export const useDailyTask = () => {

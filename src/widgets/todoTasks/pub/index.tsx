@@ -1,17 +1,24 @@
-import React from "react";
+import React, {useMemo} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {TasksColumn} from "../../tasksColumn";
 import {NoteAboutTasks} from "../../../entities/noteAboutTasks";
+import {TodoTaskSelectors} from "../model/selectors";
+import {TodoTaskActions} from "../model/actions";
+import {TodoCategoryEnum, todoFilters} from "../model/config";
+import {useTodoTask} from "../hooks/useTodoTask";
+import {filterTask} from "../../../entities/task/utils/filterTask";
+import {TaskFilters} from "../../../features/filterTasks";
+import {AddTaskForm} from "../../../features/addTask";
+import {Task} from "../../../entities/task";
 import {OkIcon} from "../../../assets/icons/OkIcon";
-import {TodoTaskSelectors} from "../../../entities/todoTask/model/selectors";
-import {TodoTaskActions} from "../../../entities/todoTask/model/actions";
-import {TodoTask} from "../../../entities/todoTask";
-import {TodoCategoryEnum, todoFilters} from "../../../entities/todoTask/model/config";
 
 export const TodoTasks: React.FC = () => {
 	const dispatch = useDispatch();
+	const {todoTaskComplete} = useTodoTask()
+
 	const todoTasks = useSelector(TodoTaskSelectors.selectTodoTasks);
 	const currentTodoTaskFilter = useSelector(TodoTaskSelectors.selectCurrentTodoTaskFilter);
+
+	const filteredTasks = useMemo(() => filterTask(todoTasks, currentTodoTaskFilter), [todoTasks, currentTodoTaskFilter])
 
 	const changeActiveFilter = (newFilter: string) => {
 		dispatch(TodoTaskActions.changeCurrentTodoFilter({newFilter: newFilter}))
@@ -32,38 +39,42 @@ export const TodoTasks: React.FC = () => {
 		}))
 	};
 
+
+	const onSuccessButtonClick = (id: number, level: number, health: number, isCompletedTask: boolean) => () => {
+		if (!isCompletedTask) {
+			todoTaskComplete(id, level, health)
+		}
+	};
+
 	return (
-		<TasksColumn
-			tasksColumnName='Задачи'
-			addTask={
-				{
-					placeHolder: 'Добавить задачу',
-					handler: onSendToDo
-				}
-			}
-			taskFilters={{
-				filters: todoFilters,
-				handler: changeActiveFilter
-			}}
-			tasks={todoTasks}
-			currentFilter={currentTodoTaskFilter}
-			taskComponent={(todoTask) => <TodoTask
-				key={todoTask.id}
-				titleText={todoTask.titleText}
-				id={todoTask.id}
-				supText={todoTask.supText}
-				category={todoTask.category}
-				isCompletedTask={todoTask.category === TodoCategoryEnum.COMPLETED ?? false}
-				diff={todoTask.diff ?? 1}
-				remainDay={todoTask.remainDay ?? 0}
-			/>}
-			additionalContent={
+		<div className='tasks__column'>
+			<div className='tasks__info'>
+				<div className='tasks__name'>Задачи</div>
+				<TaskFilters taskFilters={{filters: todoFilters, handler: changeActiveFilter}}/>
+			</div>
+			<div className='tasks__item item-tasks'>
+				<div className='item-tasks__wrapper'>
+					<AddTaskForm addTask={{placeHolder: 'Добавить задачу', handler: onSendToDo}}/>
+					{
+						filteredTasks.map((filteredTask) => (
+							<Task
+								key={filteredTask.id}
+								titleText={filteredTask.titleText}
+								supText={filteredTask.supText}
+								isCompletedTask={filteredTask.isCompletedTask ?? false}
+								remainDay={filteredTask.remainDay}
+								isOneTimeTask
+								onSuccessButtonClick={onSuccessButtonClick(filteredTask.id, 10, 7, filteredTask.isCompletedTask ?? false)}
+							/>
+						))
+					}
+				</div>
 				<NoteAboutTasks
 					title='Это ваши Задачи'
 					icon={<OkIcon/>}
 					text='Задачи могут быть выполнены только один раз. Добавьте списки вашим задачам, чтобы увеличить их награду.'
 				/>
-			}
-		/>
+			</div>
+		</div>
 	);
 };

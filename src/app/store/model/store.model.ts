@@ -1,8 +1,8 @@
-import {habitState} from "entities/habitTask/model/config";
+import {habitState} from "widgets/habitTasks/model/config";
 import {userState} from "entities/user/model/config/config";
-import {rewardState} from "entities/reward/model/config";
-import {toDoState} from "entities/todoTask/model/config";
-import {dailyState} from "entities/dailyTask/model/config";
+import {toDoState} from "widgets/todoTasks/model/config";
+import {dailyState} from "widgets/dailyTasks/model/config";
+import {rewardState} from "widgets/rewards/model/config";
 
 export enum StoreEnum {
     HABIT_TASK = 'habitTask',

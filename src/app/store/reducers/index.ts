@@ -1,10 +1,10 @@
 import {combineReducers, Reducer} from "@reduxjs/toolkit";
 import {RootState, StoreEnum} from "../model/store.model";
-import {habitTask} from "../../../entities/habitTask/model/reducers";
+import {habitTask} from "../../../widgets/habitTasks/model/reducers";
 import {user} from "../../../entities/user/model";
-import {reward} from "../../../entities/reward/model/reducers";
-import {dailyTask} from "../../../entities/dailyTask/model/reducers";
-import {todoTask} from "../../../entities/todoTask/model/reducers";
+import {dailyTask} from "../../../widgets/dailyTasks/model/reducers";
+import {todoTask} from "../../../widgets/todoTasks/model/reducers";
+import {reward} from "../../../widgets/rewards/model/reducers";
 
 
 export const rootReducer: Reducer<RootState> = combineReducers({

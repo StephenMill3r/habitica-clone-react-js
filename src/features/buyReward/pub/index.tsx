@@ -17,7 +17,7 @@ export const BuyRewardBox: React.FC<IBuyRewardBox> = ({cost = 0}) => {
 
 	const onClickSpendMoney = () => {
 		if (money >= cost) {
-			dispatch(UserActions.minusUserMoney({money}))
+			dispatch(UserActions.minusUserMoney({money: cost}))
 		} else {
 			showErrorNotification(<div>У вас не хватает монет</div>)
 		}

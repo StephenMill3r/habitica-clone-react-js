@@ -1,5 +1,5 @@
 import React from 'react';
-import {useTasks} from "../../task/hooks/useTasks";
+import {useTasks} from "../../../entities/task/hooks/useTasks";
 import {useDispatch} from "react-redux";
 import {HabitTaskActions} from "../model/actions";
 

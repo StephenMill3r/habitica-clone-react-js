@@ -5,7 +5,7 @@ import {
 	setHabitSuccessTask,
 	setMinusHabitCount,
 	setPlusHabitCount,
-} from '../../../entities/habitTask/model/actions/habitTask';
+} from '../../../widgets/habitTasks/model/actions/habitTask';
 import {habitActionsType} from '../../../entities/habitTask/model/types/habitTask';
 
 describe('habitTask actions', () => {

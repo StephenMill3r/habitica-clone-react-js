@@ -1,16 +1,20 @@
-import React from "react";
+import React, {useMemo} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {TasksColumn} from "../../tasksColumn";
-import {DEFAULT_REWARD_COST, RewardCategoryEnum, rewardFilters} from "../../../entities/reward/model/config";
-import {RewardActions} from "../../../entities/reward/model/actions";
-import {RewardSelectors} from "../../../entities/reward/model/selectors";
-import {Reward} from "../../../entities/reward";
-import {RewardShop} from "../../rewardShop";
+import {TaskFilters} from "../../../features/filterTasks";
+import {AddTaskForm} from "../../../features/addTask";
+import {filterTask} from "../../../entities/task/utils/filterTask";
+import {BuyRewardBox} from "../../../features/buyReward";
+import {RewardCategoryEnum, rewardFilters} from "../model/config";
+import {RewardActions} from "../model/actions";
+import {RewardSelectors} from "../model/selectors";
+import {RewardShop} from "../../../features/rewardShop";
 
 export const Rewards: React.FC = () => {
 	const dispatch = useDispatch();
 	const rewards = useSelector(RewardSelectors.selectRewards);
 	const currentRewardFilter = useSelector(RewardSelectors.selectCurrentRewardFilter);
+
+	const filteredTasks = useMemo(() => filterTask(rewards, currentRewardFilter), [rewards, currentRewardFilter])
 
 	const changeActiveFilter = (newFilter: string) => {
 		dispatch(RewardActions.changeCurrentRewardFilter({newFilter: newFilter}))
@@ -29,30 +33,32 @@ export const Rewards: React.FC = () => {
 	};
 
 	return (
-		<TasksColumn
-			tasksColumnName='Награды'
-			addTask={
-				{
-					placeHolder: 'Добавить награду',
-					handler: onSendReward
-				}
-			}
-			taskFilters={{
-				filters: rewardFilters,
-				handler: changeActiveFilter
-			}}
-			tasks={rewards}
-			currentFilter={currentRewardFilter}
-			taskComponent={(rewardTask) => <Reward
-				key={rewardTask.id}
-				titleText={rewardTask.titleText}
-				id={rewardTask.id}
-				cost={rewardTask.cost ?? DEFAULT_REWARD_COST}
-				category={rewardTask.category}
-				supText={rewardTask.supText}
-			/>}
-			additionalContent={<RewardShop/>}
-
-		/>
+		<div className='tasks__column'>
+			<div className='tasks__info'>
+				<div className='tasks__name'>Награды</div>
+				<TaskFilters taskFilters={{filters: rewardFilters, handler: changeActiveFilter}}/>
+			</div>
+			<div className='tasks__item item-tasks'>
+				<div className='item-tasks__wrapper'>
+					<AddTaskForm addTask={{placeHolder: 'Добавить награду', handler: onSendReward}}/>
+					{
+						filteredTasks.map((filteredTask) => (
+							<div
+								className='item-tasks__task'>
+								<div className='item-tasks__middle'>
+									<div className='item-tasks__text-wrapper'>
+										<p className='item-tasks__text'>{filteredTask.titleText}</p>
+										{/*<div onClick={toggle}><ThreeDots/></div>*/}
+									</div>
+									<p className='item-tasks__suptext'>{filteredTask.supText}</p>
+								</div>
+								<BuyRewardBox cost={filteredTask.cost}/>
+							</div>
+						))
+					}
+				</div>
+				<RewardShop/>
+			</div>
+		</div>
 	);
 };

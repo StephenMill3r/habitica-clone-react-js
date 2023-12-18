@@ -6,8 +6,8 @@ export type TaskFiltersType = {
 export type TaskType = {
     id: number;
     titleText: string;
-    category: string;
     supText: string;
+    category: string;
 
     cost?: number;
     isCompletedTask?: boolean;

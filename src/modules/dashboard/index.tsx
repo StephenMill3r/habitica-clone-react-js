@@ -1,8 +1,8 @@
 import React from "react";
 import {HabitTasks} from "widgets/habitTasks";
-import {Rewards} from "widgets/rewards";
 import {DailyTasks} from "widgets/dailyTasks";
 import {TodoTasks} from "widgets/todoTasks";
+import {Rewards} from "widgets/rewards";
 
 const Dashboard = () => {
 	return (
