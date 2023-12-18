@@ -69,7 +69,7 @@
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
     ]
-  }
+  },
     "engines" : { 
     "npm" : ">=18.0.0 <18.17.0",
     "node" : ">=9.0.0 <9.9.2"
